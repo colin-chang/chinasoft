@@ -1,0 +1,38 @@
+<ion-view id="devInfoVideos" cache-view="false">
+    <ion-header-bar class="bar-calm item-input-inset">
+        <button class="button button-calm button-icon icon ion-ios-arrow-back" ui-sref="indexTab.devInfo"></button>
+        <label class="item-input-wrapper">
+            <i class="icon ion-ios-search placeholder-icon"></i>
+            <form ng-submit="search()">
+                <input type="search" ng-model="keyword" placeholder="输入关键字搜索">
+            </form>
+        </label>
+        <button class="button button-light button-clear" ng-click="cancel()">取消</button>
+    </ion-header-bar>
+    <header class="bar bar-subheader">
+        <div class="button-bar">
+            <button class="button button-calm" ng-repeat="class in classList" ng-click="queryClass(class.value)"
+                    ng-class="{'active':class.value===classId}">{{class.text}}
+            </button>
+        </div>
+    </header>
+    <ion-content class="has-header has-subheader">
+        <section class="section-menu dark">
+            <div class="row" ng-repeat="group in videoGroups">
+                <div class="col" ng-repeat="video in group" ui-sref="devInfo.videoPlayer({id:video.id})">
+                    <div class="thumb" style="background-image: url('{{video.thumbnailUrl}}')">
+                        <i class="iconfont icon-bofang light"></i>
+                    </div>
+                    <h5>{{video.shortName}}</h5>
+                </div>
+            </div>
+        </section>
+        <ion-infinite-scroll ng-if="canLoadMore" on-infinite="loadMore()">
+        </ion-infinite-scroll>
+    </ion-content>
+</ion-view>
+
+<!--文件预览-->
+<!--<img src="http://115.28.209.159/files/devinfo/equipment/cover/v01.jpg" width="100%">-->
+<!--<video src="http://115.28.209.159/files/devinfo/equipment/techdoc/bwaz.mp4" autoplay controls style="width: 100%;"></video>-->
+<!--<iframe src="http://115.28.209.159/files/devinfo/equipment/techdoc/zl_html/index.html" style="width: 100%;border: 0;"></iframe>-->

@@ -1,0 +1,50 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style TargetType="StackPanel" x:Key="doc-panel">
+        <Setter Property="Width" Value="120"></Setter>
+        <Setter Property="Height" Value="140"></Setter>
+    </Style>
+    <Style TargetType="Border" x:Key="doc-body">
+        <Setter Property="BorderThickness" Value="2"></Setter>
+        <Setter Property="BorderBrush" Value="Transparent"></Setter>
+        <Setter Property="Width" Value="94"></Setter>
+        <Setter Property="Height" Value="120"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+    </Style>
+    <Style TargetType="Image" x:Key="img-icon">
+        <Setter Property="Width" Value="70"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        <Setter Property="Margin" Value="0 5"></Setter>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="txt-fileName">
+        <Setter Property="TextWrapping" Value="Wrap"></Setter>
+        <Setter Property="Foreground" Value="#fff"></Setter>
+        <Setter Property="FontSize" Value="12"></Setter>
+        <Setter Property="TextAlignment" Value="Center"></Setter>
+        <Setter Property="Width" Value="92"></Setter>
+    </Style>
+    <Style TargetType="Button" x:Key="button-file">
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <StackPanel Style="{StaticResource doc-panel}">
+                        <Border Style="{StaticResource doc-body}" Name="bd">
+                            <StackPanel>
+                                <Image Source="{Binding Thumbnail}" Style="{StaticResource img-icon}"></Image>
+                                <TextBlock Text="{Binding Name}" Style="{StaticResource txt-fileName}"></TextBlock>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="bd" Property="BorderBrush" Value="#2589AF"></Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

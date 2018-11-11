@@ -1,0 +1,272 @@
+﻿<UserControl x:Class="Com.ChinaSoft.WorkOrder.Views.MainUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:uc="clr-namespace:Com.ChinaSoft.UserControls;assembly=Com.ChinaSoft.UserControls"
+             xmlns:vw="clr-namespace:Com.ChinaSoft.WorkOrder.Views"
+             mc:Ignorable="d"
+             d:DesignHeight="746" d:DesignWidth="1280" Background="#2B2D39">
+
+    <UserControl.Resources>
+        <ResourceDictionary Source="/Resources/Style/MainDict.xaml" />
+    </UserControl.Resources>
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="4*" />
+            <RowDefinition Height="3*" />
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid DataContext="{Binding CurWorkOrderProcess}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Border Style="{StaticResource Border-Parameter}">
+                        <StackPanel Style="{StaticResource Stk-Parameter}">
+                            <TextBlock Style="{StaticResource Txt-Parameter-Name}">烟丝消耗</TextBlock>
+                            <StackPanel Style="{StaticResource Stk-Parameter-Content}" Orientation="Horizontal">
+                                <TextBlock Style="{StaticResource Txt-Parameter-Value}" Text="{Binding ScrapQlt}" />
+                                <TextBlock Style="{StaticResource Txt-Parameter-Unit}">公斤</TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                    <Border Style="{StaticResource Border-Parameter}" Grid.Column="1">
+                        <StackPanel Style="{StaticResource Stk-Parameter}">
+                            <TextBlock Style="{StaticResource Txt-Parameter-Name}" Text="盘纸消耗" />
+                            <StackPanel Style="{StaticResource Stk-Parameter-Content}" Orientation="Horizontal">
+                                <TextBlock Style="{StaticResource Txt-Parameter-Value}" Text="{Binding BobbinQlt}" />
+                                <TextBlock Style="{StaticResource Txt-Parameter-Unit}" Text="米" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                    <Border Style="{StaticResource Border-Parameter}" Grid.Column="2">
+                        <StackPanel Style="{StaticResource Stk-Parameter}">
+                            <TextBlock Style="{StaticResource Txt-Parameter-Name}" Text="嘴棒消耗" />
+                            <StackPanel Style="{StaticResource Stk-Parameter-Content}" Orientation="Horizontal">
+                                <TextBlock Style="{StaticResource Txt-Parameter-Value}" Text="{Binding FiltertipQlt}" />
+                                <TextBlock Style="{StaticResource Txt-Parameter-Unit}" Text="万个" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                    <Border Style="{StaticResource Border-Parameter}" Grid.Column="3">
+                        <StackPanel Style="{StaticResource Stk-Parameter}">
+                            <TextBlock Style="{StaticResource Txt-Parameter-Name}" Text="剔除" />
+                            <StackPanel Style="{StaticResource Stk-Parameter-Content}" Orientation="Horizontal">
+                                <TextBlock Style="{StaticResource Txt-Parameter-Value}" Text="{Binding CullQlt}" />
+                                <TextBlock Style="{StaticResource Txt-Parameter-Unit}" Text="万支" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="1" Margin="0 0 10 0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="2*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Border Style="{StaticResource item-header}">
+                        <TextBlock Style="{StaticResource item-info-header}" Text="工单号" />
+                    </Border>
+                    <Border Style="{StaticResource item}" Grid.Column="1">
+                        <TextBlock Style="{StaticResource item-info-content}" Text="{Binding CurWorkOrder.OrderNo}" />
+                    </Border>
+                    <Border Style="{StaticResource item-header}" Grid.Row="1">
+                        <TextBlock Style="{StaticResource item-info-header}" Text="机台号" />
+                    </Border>
+                    <Border Style="{StaticResource item}" Grid.Row="1" Grid.Column="1">
+                        <TextBlock Style="{StaticResource item-info-content}" Text="{Binding CurWorkOrder.MachinaName}" />
+                    </Border>
+                    <Border Style="{StaticResource item-header}" Grid.Row="2">
+                        <TextBlock Style="{StaticResource item-info-header}" Text="计划开始" />
+                    </Border>
+                    <Border Style="{StaticResource item}" Grid.Row="2" Grid.Column="1">
+                        <TextBlock Style="{StaticResource item-info-content}"
+                                   Text="{Binding CurWorkOrder.PlanStartTimeStr}" />
+                    </Border>
+                    <Border Style="{StaticResource item-header}" Grid.Row="3">
+                        <TextBlock Style="{StaticResource item-info-header}" Text="实际开始" />
+                    </Border>
+                    <Border Style="{StaticResource item}" Grid.Row="3" Grid.Column="1">
+                        <TextBlock Style="{StaticResource item-info-content}"
+                                   Text="{Binding CurWorkOrder.FactStartTimeStr}" />
+                    </Border>
+
+                    <Border Style="{StaticResource item-header}" Grid.Column="2">
+                        <TextBlock Style="{StaticResource item-info-header}" Text="工单状态" />
+                    </Border>
+                    <Border Style="{StaticResource item}" Grid.Column="3">
+                        <TextBlock Style="{StaticResource item-info-content}" Text="{Binding CurWorkOrder.StatusStr}" />
+                    </Border>
+                    <Border Style="{StaticResource item-header}" Grid.Row="1" Grid.Column="2">
+                        <TextBlock Style="{StaticResource item-info-header}" Text="生产牌号" />
+                    </Border>
+                    <Border Style="{StaticResource item}" Grid.Row="1" Grid.Column="3">
+                        <TextBlock Style="{StaticResource item-info-content}" Text="{Binding CurWorkOrder.Grade}" />
+                    </Border>
+                    <Border Style="{StaticResource item-header}" Grid.Row="2" Grid.Column="2">
+                        <TextBlock Style="{StaticResource item-info-header}" Text="计划结束" />
+                    </Border>
+                    <Border Style="{StaticResource item}" Grid.Row="2" Grid.Column="3">
+                        <TextBlock Style="{StaticResource item-info-content}"
+                                   Text="{Binding CurWorkOrder.PlanEndTimeStr}" />
+                    </Border>
+                    <Border Style="{StaticResource item-header}" Grid.Row="3" Grid.Column="2">
+                        <TextBlock Style="{StaticResource item-info-header}" Text="实际结束" />
+                    </Border>
+                    <Border Style="{StaticResource item}" Grid.Row="3" Grid.Column="3">
+                        <TextBlock Style="{StaticResource item-info-content}"
+                                   Text="{Binding CurWorkOrder.FactEndTimeStr}" />
+                    </Border>
+
+                    <Border Style="{StaticResource item-header}" Grid.Column="4">
+                        <TextBlock Style="{StaticResource item-info-header}" Text="班次" />
+                    </Border>
+                    <Border Style="{StaticResource item}" Grid.Column="5">
+                        <TextBlock Style="{StaticResource item-info-content}" Text="{Binding CurWorkOrder.Shift}" />
+                    </Border>
+                    <Border Style="{StaticResource item-header}" Grid.Row="1" Grid.Column="4">
+                        <TextBlock Style="{StaticResource item-info-header}" Text="班组" />
+                    </Border>
+                    <Border Style="{StaticResource item}" Grid.Row="1" Grid.Column="5">
+                        <TextBlock Style="{StaticResource item-info-content}" Text="{Binding CurWorkOrder.OrderClass}" />
+                    </Border>
+                    <Border Style="{StaticResource item-header}" Grid.Row="2" Grid.Column="4">
+                        <TextBlock Style="{StaticResource item-info-header}" Text="计划产量" />
+                    </Border>
+                    <Border Style="{StaticResource item}" Grid.Row="2" Grid.Column="5">
+                        <TextBlock Style="{StaticResource item-info-content}" Text="{Binding CurWorkOrder.PlanOutput}" />
+                    </Border>
+                    <Border Style="{StaticResource item-header}" Grid.Row="3" Grid.Column="4">
+                        <TextBlock Style="{StaticResource item-info-header}" Text="实际产量" />
+                    </Border>
+                    <Border Style="{StaticResource item}" Grid.Row="3" Grid.Column="5">
+                        <TextBlock Style="{StaticResource item-info-content}"
+                                   Text="{Binding CurWorkOrderProcess.Output}" />
+                    </Border>
+                </Grid>
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="5*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="4*" />
+                </Grid.RowDefinitions>
+                <Grid Style="{StaticResource Dashboard}">
+                    <Canvas>
+                        <TextBlock Style="{StaticResource Dashboard-Number}" Text="0" Canvas.Top="170" Canvas.Left="25">
+                            <TextBlock.RenderTransform>
+                                <RotateTransform Angle="90" />
+                            </TextBlock.RenderTransform>
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource Dashboard-Number}" Text="{Binding DashboardNumber1}"
+                                   Canvas.Top="80" Canvas.Left="35">
+                            <TextBlock.RenderTransform>
+                                <RotateTransform Angle="300" />
+                            </TextBlock.RenderTransform>
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource Dashboard-Number}" Text="{Binding DashboardNumber2}"
+                                   Canvas.Top="8" Canvas.Left="160" />
+                        <TextBlock Style="{StaticResource Dashboard-Number}" Text="{Binding DashboardNumber3}"
+                                   Canvas.Top="70" Canvas.Left="310">
+                            <TextBlock.RenderTransform>
+                                <RotateTransform Angle="60" />
+                            </TextBlock.RenderTransform>
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource Dashboard-Number}" Text="{Binding DashboardNumber4}"
+                                   Canvas.Top="160" Canvas.Left="345">
+                            <TextBlock.RenderTransform>
+                                <RotateTransform Angle="90" />
+                            </TextBlock.RenderTransform>
+                        </TextBlock>
+                    </Canvas>
+                    <Image Style="{StaticResource Img-Pointer}">
+                        <Image.RenderTransform>
+                            <RotateTransform Angle="{Binding PointerAngle}" />
+                        </Image.RenderTransform>
+                    </Image>
+                </Grid>
+                <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Border CornerRadius="15" Background="#1E212A" Padding="20 3 20 3">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Style="{StaticResource Txt-Dashboard-Label}" Text="生产量 " />
+                            <TextBlock Style="{StaticResource Txt-Dashboard-Value}"
+                                       Text="{Binding CurWorkOrderProcess.Output}" />
+                            <TextBlock Style="{StaticResource Txt-Dashboard-Label}" Text=" 万支" />
+                        </StackPanel>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Button Style="{StaticResource ButtonOperation}" Command="{Binding StartCommand}"
+                            IsEnabled="{Binding EnableStartButton}" Content="工单开始" />
+                    <Button Style="{StaticResource ButtonOperation}" Command="{Binding EndCommand}"
+                            IsEnabled="{Binding EnableEndButton}" Grid.Column="1" Content="工单结束" />
+                    <Button Style="{StaticResource ButtonOperation}" Command="{Binding ReplayCommand}"
+                            CommandParameter="0" Grid.Row="1" IsEnabled="{Binding EnableHandOverButton}" Content="交班" />
+                    <Button Style="{StaticResource ButtonOperation}" Command="{Binding ReplayCommand}"
+                            CommandParameter="1" Grid.Row="1" Grid.Column="1"
+                            IsEnabled="{Binding EnableTakeOverButton}" Content="接班" />
+                </Grid>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="1" Margin="0,20,0,0" Background="#262834">
+            <TabControl Name="TabWorkOrder" SelectionChanged="TabControl_SelectionChanged">
+                <TabControl.Items>
+                    <TabItem Header="工单信息" Name="WorkOrderList">
+                        <vw:MainWorkOrderUC />
+                    </TabItem>
+                    <TabItem IsEnabled="False" IsHitTestVisible="False" Style="{StaticResource TabItemSeperator}">
+                        <TabItem.Header>
+                            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Height="15"
+                                       Background="#47485C" />
+                        </TabItem.Header>
+                    </TabItem>
+                    <TabItem Header="辅料信息" Name="WorkOrderAssist">
+                        <vw:MainRecipeUC />
+                    </TabItem>
+                    <TabItem IsEnabled="False" IsHitTestVisible="False" Style="{StaticResource TabItemSeperator}">
+                        <TabItem.Header>
+                            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Height="15"
+                                       Background="#47485C" />
+                        </TabItem.Header>
+                    </TabItem>
+                    <TabItem Header="工艺标准" Name="WorkOrderStandard">
+                        <vw:MainTechStandardUC />
+                    </TabItem>
+                </TabControl.Items>
+            </TabControl>
+        </Grid>
+        <uc:ProgressRing Name="ring" />
+    </Grid>
+</UserControl>

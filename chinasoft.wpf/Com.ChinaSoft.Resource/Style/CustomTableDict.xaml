@@ -1,0 +1,26 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style TargetType="Border" x:Key="item">
+        <Setter Property="BorderThickness" Value="1"></Setter>
+        <Setter Property="BorderBrush" Value="#4C4E60"></Setter>
+    </Style>
+    <Style TargetType="Border" x:Key="item-header">
+        <Setter Property="BorderThickness" Value="1"></Setter>
+        <Setter Property="Background" Value="#3F4257"></Setter>
+        <Setter Property="BorderBrush" Value="#5C5E70"></Setter>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="item-info">
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="item-info-header" BasedOn="{StaticResource item-info}">
+        <Setter Property="Foreground" Value="#B0B0B8"></Setter>
+        <Setter Property="TextAlignment" Value="Right"></Setter>
+        <Setter Property="Margin" Value="0 0 10 0"></Setter>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="item-info-content" BasedOn="{StaticResource item-info}">
+        <Setter Property="Foreground" Value="#FFF"></Setter>
+        <Setter Property="TextAlignment" Value="Left"></Setter>
+        <Setter Property="Margin" Value="10 0 0 0"></Setter>
+    </Style>
+</ResourceDictionary>

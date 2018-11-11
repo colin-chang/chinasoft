@@ -1,0 +1,97 @@
+﻿<wpfSys:SchedulerWindow x:Class="Com.ChinaSoft.MenuPanel.MainWindow"
+                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                        xmlns:local="clr-namespace:Com.ChinaSoft.MenuPanel"
+                        xmlns:wpfSys="clr-namespace:Com.ChinaSoft.Model.WpfSys;assembly=Com.ChinaSoft.Model"
+                        mc:Ignorable="d" WindowStyle="None" Background="Transparent" AllowsTransparency="True"
+                        WindowStartupLocation="Manual" Left="0" Top="252"
+                        Title="MainWindow" Height="770" Width="130">
+
+    <Window.Resources>
+        <Style TargetType="Grid" x:Key="StackPanelMenu">
+            <Setter Property="Background" Value="#656566"></Setter>
+            <!--<Setter Property="Background" Value="Red"></Setter>-->
+            <!--<Setter Property="Width" Value="140"></Setter>-->
+            <Setter Property="Height" Value="770"></Setter>
+            <!--<Setter Property="HorizontalAlignment" Value="Left"></Setter>-->
+            <!--<Setter Property="Margin" Value="0"></Setter>-->
+            <Setter Property="ZIndex" Value="1"></Setter>
+        </Style>
+        
+        <Style TargetType="Image" x:Key="MenuItemIco">
+            <Setter Property="Margin" Value="5,0,0,0"></Setter>
+            <Setter Property="Width" Value="25"></Setter>
+        </Style>
+
+        <Style TargetType="Button" x:Key="ButtonExeItem">
+            <Setter Property="BorderThickness" Value="0"></Setter>
+            <Setter Property="Background" Value="Transparent"></Setter>
+            <Setter Property="Foreground" Value="#FFFFFF"></Setter>
+            <Setter Property="FontSize" Value="16"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+            <Setter Property="Margin" Value="10,0,5,0"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <TextBlock Text="{TemplateBinding Content}" VerticalAlignment="Center"></TextBlock>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Storyboard x:Key="MenuIn">
+            <ThicknessAnimation Duration="0:0:.75" Storyboard.TargetProperty="Left" From="-130,0,130,0" To="0" DecelerationRatio=".9" />
+            <DoubleAnimation Duration="0:0:.5" Storyboard.TargetProperty="Opacity" From="0" To="1" />
+        </Storyboard>
+
+        <Storyboard x:Key="MenuOut">
+            <ThicknessAnimation Duration="0:0:.75" Storyboard.TargetProperty="Left" To="-130,0,130,0" AccelerationRatio=".9"/>
+            <DoubleAnimation Duration="0:0:.5" Storyboard.TargetProperty="Opacity" To="0.5" />
+        </Storyboard>
+    </Window.Resources>
+
+    <Grid Style="{StaticResource StackPanelMenu}" Name="PanelMenu" Button.Click="OpenChild">
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Image Style="{StaticResource MenuItemIco}" Source="Images/信息.png" Grid.Row="0" Grid.Column="0"></Image>
+        <Button Style="{StaticResource ButtonExeItem}" Content="信  息" Grid.Row="0" Grid.Column="1" />
+        <Image Style="{StaticResource MenuItemIco}" Source="Images/常用设置.png" Grid.Row="1" Grid.Column="0"></Image>
+        <Button Style="{StaticResource ButtonExeItem}" Content="常用设置" Grid.Row="1" Grid.Column="1" />
+        <Image Style="{StaticResource MenuItemIco}" Source="Images/生产.png" Grid.Row="2" Grid.Column="0"></Image>
+        <Button Style="{StaticResource ButtonExeItem}" Content="生  产" Grid.Row="2" Grid.Column="1" />
+        <Image Style="{StaticResource MenuItemIco}" Source="/Images/质量.png" Grid.Row="3" Grid.Column="0"></Image>
+        <Button Style="{StaticResource ButtonExeItem}" Content="质  量" Grid.Row="3" Grid.Column="1" />
+        <Image Style="{StaticResource MenuItemIco}" Source="Images/设置.png" Grid.Row="4" Grid.Column="0"></Image>
+        <Button Style="{StaticResource ButtonExeItem}" Content="设  置" Grid.Row="4" Grid.Column="1" />
+        <Image Style="{StaticResource MenuItemIco}" Source="Images/一机一档.png" Grid.Row="5" Grid.Column="0"></Image>
+        <Button Style="{StaticResource ButtonExeItem}" Tag="Com.ChinaSoft.Devinfo" Content="一机一档" Grid.Row="5" Grid.Column="1" />
+        <Image Style="{StaticResource MenuItemIco}" Source="Images/设备预警.png" Grid.Row="6" Grid.Column="0"></Image>
+        <Button Style="{StaticResource ButtonExeItem}" Tag="Com.ChinaSoft.AlertCenter" Content="设备预警" Grid.Row="6" Grid.Column="1" />
+        <Image Style="{StaticResource MenuItemIco}" Source="Images/工单执行.png" Grid.Row="7" Grid.Column="0"></Image>
+        <Button Style="{StaticResource ButtonExeItem}" Tag="Com.ChinaSoft.WorkOrder" Content="工单执行" Grid.Row="7" Grid.Column="1" />
+        <Image Style="{StaticResource MenuItemIco}" Source="Images/远程协助.png" Grid.Row="8" Grid.Column="0"></Image>
+        <Button Style="{StaticResource ButtonExeItem}" Tag="Com.ChinaSoft.Sercenter" Content="远程协助" Grid.Row="8" Grid.Column="1" />
+        <Image Style="{StaticResource MenuItemIco}" Source="Images/状态诊断.png" Grid.Row="9" Grid.Column="0"></Image>
+        <Button Style="{StaticResource ButtonExeItem}" Content="状态诊断" Grid.Row="9" Grid.Column="1" />
+    </Grid>
+</wpfSys:SchedulerWindow>
+

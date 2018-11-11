@@ -1,0 +1,50 @@
+<ion-view id="warningRepair" cache-view="false">
+    <ion-header-bar class="bar-calm">
+        <button class="button button-calm button-icon icon ion-ios-arrow-back" ui-sref="warning.fault"></button>
+        <h1 class="title">报修呼叫</h1>
+    </ion-header-bar>
+    <ion-content class="has-header padding-top">
+        <ion-list>
+            <ion-item class="item-input"><span class="input-label">标题</span><input type="text" class="text-right" ng-model="data.title"></ion-item>
+            <ion-item class="item-input item-select">
+                <div class="input-label">
+                    故障种类
+                </div>
+                <select ng-model="data.typeId" ng-options=" type.value as type.text for type in fault.types">
+                </select>
+            </ion-item>
+            <ion-item>设备名称<span class="item-note">{{fault.equipmentName}}</span></ion-item>
+            <ion-item>班次<span class="item-note">{{fault.shiftName}}</span></ion-item>
+            <ion-item>故障代码<span class="item-note">{{fault.faultCode}}</span></ion-item>
+            <ion-item>故障部位<span class="item-note">{{fault.partName}}</span></ion-item>
+            <ion-item>故障现象<span class="item-note">{{fault.failure}}</span></ion-item>
+            <ion-item>发生时间<span class="item-note">{{data.inputTime|date:'yyyy-MM-dd HH:mm:ss'}}</span></ion-item>
+            <ion-item>报修人<span class="item-note">{{data.recardUserName}}</span></ion-item>
+            <ion-item class="item-input"><span class="input-label">报修内容</span><input type="text" class="text-right" ng-model="data.content">
+            </ion-item>
+            <ion-item class="item-input"><span class="input-label">联系人</span><input type="text" class="text-right" ng-model="data.linkman">
+            </ion-item>
+            <ion-item class="item-input"><span class="input-label">联系电话</span><input type="number" class="text-right" ng-model="data.linktel">
+            </ion-item>
+            <ion-item class="item-checkbox">
+                <label class="checkbox">
+                    <input type="checkbox" ng-model="fault.isSendFac">
+                </label>
+                向烟机公司服务中心进行报修
+            </ion-item>
+        </ion-list>
+        <div class="pictures row">
+            <div class="col-50" ng-click="takePicture(1)">
+                <button class="button icon ion-close"></button>
+                <img id="img-1" src="//www.baidu.com/img/bd_logo1.png">
+            </div>
+            <div class="col-50 text-center" ng-click="takePicture(2)">
+                <span><i class="icon ion-plus takePicture"></i>
+                拍照</span>
+            </div>
+        </div>
+        <div class="padding">
+            <button class="button button-block button-positive" ng-click="submit()">提交</button>
+        </div>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,43 @@
+﻿<Window x:Class="Com.ChinaSoft.Test.ZoomWebBrowserWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize"
+        Title="ZoomWebBrowserWindow" Height="300" Width="500">
+    <!--<Border Background="Bisque">
+        <Grid>
+            <Canvas Panel.ZIndex="100">
+                <Button Click="ButtonBase_OnClick"
+                        Canvas.Top="150" 
+                        Canvas.Left="50"
+                        Content="Zoom" 
+                        
+                        Background="Red" />
+            </Canvas>
+            <WebBrowser Source="https://www.baidu.com" AllowDrop="True" />
+        </Grid>
+    </Border>-->
+    <Grid Background="Bisque">
+        <WebBrowser Source="https://www.baidu.com"  x:Name="WebBrowser1"/>
+        <Popup IsOpen="True"
+            AllowsTransparency="True"
+            Grid.RowSpan="99"
+            Grid.ColumnSpan="99"
+            Placement="Center"
+            Width="{Binding ActualWidth,
+                            ElementName=WebBrowser1,
+                            Mode=OneWay}"
+            Height="{Binding ActualHeight, 
+                            ElementName=WebBrowser1,
+                            Mode=OneWay}"
+            PlacementTarget="{Binding ElementName=WebBrowser1}"
+            Opacity="0.1"
+            Margin="3">
+            <Button Click="ButtonBase_OnClick" Content="Zoom" Background="Red" VerticalAlignment="Center" HorizontalAlignment="Center"></Button>
+        </Popup>
+    </Grid>
+</Window>
+
+
+

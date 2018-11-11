@@ -1,0 +1,127 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:cvt="clr-namespace:Com.ChinaSoft.Devinfo.Expands.Converter">
+
+    <Style TargetType="Border" x:Key="tmp-border-base">
+        <Setter Property="BorderThickness" Value="0 0 0 1"></Setter>
+        <Setter Property="BorderBrush" Value="#4C4E60"></Setter>
+    </Style>
+    <Style TargetType="Border" x:Key="tmp-border-structure" BasedOn="{StaticResource tmp-border-base}">
+        <Setter Property="Height" Value="80"></Setter>
+    </Style>
+    <Style TargetType="Border" x:Key="tmp-border-searchResult" BasedOn="{StaticResource tmp-border-base}">
+        <Setter Property="Height" Value="70"></Setter>
+    </Style>
+    <Style TargetType="Image" x:Key="tmp-img-icon">
+        <Setter Property="Height" Value="45"></Setter>
+        <Setter Property="Margin" Value="10 10 15 10"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="Margin" Value="10 0"></Setter>
+    </Style>
+    <!--<Style TargetType="StackPanel" x:Key="tmp-structure-panel">
+        <Setter Property="Width" Value="195"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+    </Style>-->
+    <Style TargetType="TextBlock" x:Key="tmp-structure-name">
+        <Setter Property="FontSize" Value="18"></Setter>
+        <Setter Property="Foreground" Value="#fff"></Setter>
+        <Setter Property="Margin" Value="0 0 0 10"></Setter>
+        <Setter Property="Width" Value="195"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="Margin" Value="0 5"></Setter>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="tmp-structure-code">
+        <Setter Property="FontSize" Value="13"></Setter>
+        <Setter Property="Foreground" Value="#ADADB1"></Setter>
+    </Style>
+    <Style TargetType="Image" x:Key="tmp-img-next">
+        <Style.Resources>
+            <cvt:StructureNextVisibilityConverter x:Key="snvc"></cvt:StructureNextVisibilityConverter>
+        </Style.Resources>
+        <Setter Property="Source" Value="/Images/Structure/enter.png"></Setter>
+        <Setter Property="Height" Value="28"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="Visibility" Value="{Binding IsLeaf,Converter={StaticResource snvc}}"></Setter>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="tmp-searchResult-name">
+        <Setter Property="Width" Value="110"></Setter>
+        <Setter Property="Foreground" Value="#CE8483"></Setter>
+        <Setter Property="FontSize" Value="15"></Setter>
+        <Setter Property="Margin" Value="10 0"></Setter>
+        <Setter Property="TextWrapping" Value="Wrap"></Setter>
+        <Setter Property="TextAlignment" Value="Center"></Setter>
+        <Setter Property="LineHeight" Value="24"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+    </Style>
+    <Style TargetType="StackPanel" x:Key="tmp-searchResult-panel">
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="Width" Value="140"></Setter>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="tmp-searchResult-pNm">
+        <Setter Property="FontSize" Value="15"></Setter>
+        <Setter Property="Foreground" Value="#fff"></Setter>
+        <Setter Property="Margin" Value="0 0 0 10"></Setter>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="tmp-searchResult-code">
+        <Setter Property="FontSize" Value="15"></Setter>
+        <Setter Property="Foreground" Value="#ADADB1"></Setter>
+    </Style>
+
+    <DataTemplate x:Key="templateStructure" DataType="ListBoxItem">
+        <Border Style="{StaticResource tmp-border-structure}">
+            <StackPanel Orientation="Horizontal">
+                <Image Style="{StaticResource tmp-img-icon}" Source="{Binding Thumb}"></Image>
+                <!--<StackPanel Style="{StaticResource tmp-structure-panel}">
+                    <TextBlock Style="{StaticResource tmp-structure-name}" Text="{Binding BomNm}"></TextBlock>
+                    <TextBlock Style="{StaticResource tmp-structure-code}" Text="{Binding BomCode}"></TextBlock>
+                </StackPanel>-->
+                <TextBlock Style="{StaticResource tmp-structure-name}" Text="{Binding BomNm}"></TextBlock>
+                <Image Style="{StaticResource tmp-img-next}"></Image>
+            </StackPanel>
+        </Border>
+    </DataTemplate>
+
+    <DataTemplate x:Key="templateSearchResult" DataType="ListBoxItem">
+        <Border Style="{StaticResource tmp-border-searchResult}">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Style="{StaticResource tmp-searchResult-name}" Text="{Binding BomNm}"></TextBlock>
+                <StackPanel Style="{StaticResource tmp-searchResult-panel}">
+                    <TextBlock Style="{StaticResource tmp-searchResult-pNm}" Text="{Binding ParentBomNm}"></TextBlock>
+                    <TextBlock Style="{StaticResource tmp-searchResult-code}" Text="{Binding BomCode}"></TextBlock>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </DataTemplate>
+
+    <Style TargetType="Border" x:Key="doc-body">
+        <Setter Property="BorderThickness" Value="2"></Setter>
+        <Setter Property="BorderBrush" Value="Transparent"></Setter>
+        <Setter Property="Width" Value="42"></Setter>
+        <Setter Property="Height" Value="42"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+    </Style>
+
+    <DataTemplate x:Key="templateDocument" DataType="ListBoxItem">
+        <Border Style="{StaticResource doc-body}" Name="bd">
+            <Image Source="{Binding Thumbnail}" Width="30"></Image>
+        </Border>
+    </DataTemplate>
+
+    <Style TargetType="Hyperlink" x:Key="lk-cpc">
+        <Setter Property="Foreground" Value="#fff"></Setter>
+        <Setter Property="FontSize" Value="14"></Setter>
+    </Style>
+    <DataTemplate x:Key="PurchaseColumn">
+        <StackPanel Orientation="Horizontal">
+            <Image Source="/Images/Structure/cart.png" Height="15"></Image>
+            <TextBlock Margin="5,0">
+                <Hyperlink Style="{StaticResource lk-cpc}"
+                    Command="{Binding DataContext.PurchaseCommand, 
+                              RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type DataGrid},AncestorLevel=1}}"
+                              CommandParameter="{Binding Id}">
+                    购买
+                </Hyperlink>
+            </TextBlock>
+        </StackPanel>
+    </DataTemplate>
+</ResourceDictionary>

@@ -1,0 +1,329 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:cvt="clr-namespace:Com.ChinaSoft.Devinfo.Expands.Converter"
+                    xmlns:b="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Com.ChinaSoft.Resource;Component/Style/CommonDict.xaml"></ResourceDictionary>
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style TargetType="Line">
+        <Setter Property="StrokeThickness" Value="1"></Setter>
+        <Setter Property="Stroke" Value="Orange"></Setter>
+        <Setter Property="Opacity" Value="0"></Setter>
+    </Style>
+
+    <cvt:BomVisibilityConverter x:Key="bvc"></cvt:BomVisibilityConverter>
+    <cvt:ExpVisibilityConverter x:Key="evc"></cvt:ExpVisibilityConverter>
+    <cvt:BomLeafColorConverter x:Key="blc"></cvt:BomLeafColorConverter>
+
+    <Style TargetType="Button" x:Key="button-base">
+        <!--专家经验库节点尺寸-->
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="Width" Value="120"></Setter>
+
+        <Setter Property="Foreground" Value="#FFF"></Setter>
+    </Style>
+    <Style TargetType="Border" x:Key="node-border">
+        <Setter Property="CornerRadius" Value="15"></Setter>
+    </Style>
+    <Style TargetType="Border" BasedOn="{StaticResource node-border}" x:Key="border-collapsed">
+        <Setter Property="Background" Value="#1DB8AB"></Setter>
+    </Style>
+    <Style TargetType="Border" BasedOn="{StaticResource node-border}" x:Key="border-expand">
+        <Setter Property="Background" Value="#189BC0"></Setter>
+    </Style>
+    <Style TargetType="Border" x:Key="border-toggle">
+        <Setter Property="Width" Value="24"></Setter>
+        <Setter Property="Height" Value="24"></Setter>
+        <Setter Property="CornerRadius" Value="24"></Setter>
+        <Setter Property="Background" Value="#252733"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="Margin" Value="3"></Setter>
+    </Style>
+    <Style TargetType="Border" BasedOn="{StaticResource border-toggle}" x:Key="toggle-left">
+        <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+    </Style>
+    <Style TargetType="Border" BasedOn="{StaticResource border-toggle}" x:Key="toggle-right">
+        <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+    </Style>
+    <Style TargetType="Border" BasedOn="{StaticResource toggle-left}" x:Key="toggle-left-bvc">
+        <Setter Property="Visibility" Value="{Binding Converter={StaticResource bvc}}"></Setter>
+    </Style>
+    <Style TargetType="Border" BasedOn="{StaticResource toggle-right}" x:Key="toggle-right-evc">
+        <Setter Property="Visibility" Value="{Binding Converter={StaticResource evc}}"></Setter>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="toggle-text">
+        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+        <Setter Property="Padding" Value="0 0 0 2"></Setter>
+    </Style>
+    <Style TargetType="Hyperlink" x:Key="link-base">
+        <Setter Property="TextDecorations" Value="None"></Setter>
+    </Style>
+    <Style TargetType="Hyperlink" x:Key="link-bom"  BasedOn="{StaticResource link-base}">
+        <Setter Property="Command" Value="{Binding RelativeSource={RelativeSource AncestorLevel=1,AncestorType={x:Type Button}},Path=Tag.BomCommand}"></Setter>
+        <Setter Property="CommandParameter" Value="{Binding RelativeSource={RelativeSource AncestorLevel=1,AncestorType={x:Type Button}}}"></Setter>
+        <Setter Property="FontSize" Value="18"></Setter>
+    </Style>
+    <Style TargetType="Hyperlink" x:Key="link-exp"  BasedOn="{StaticResource link-base}">
+        <Setter Property="Command" Value="{Binding RelativeSource={RelativeSource AncestorLevel=1,AncestorType={x:Type Button}},Path=Tag.ExpCommand}"></Setter>
+        <Setter Property="CommandParameter" Value="{Binding RelativeSource={RelativeSource AncestorLevel=1,AncestorType={x:Type Button}}}"></Setter>
+        <Setter Property="FontSize" Value="24"></Setter>
+    </Style>
+    <Style TargetType="Hyperlink" BasedOn="{StaticResource link-bom}" x:Key="link-bom-collapsed">
+        <Setter Property="Foreground" Value="#1DB8AB"></Setter>
+    </Style>
+    <Style TargetType="Hyperlink" BasedOn="{StaticResource link-bom}" x:Key="link-bom-expand">
+        <Setter Property="Foreground" Value="#189BC0"></Setter>
+    </Style>
+    <Style TargetType="Hyperlink" BasedOn="{StaticResource link-exp}" x:Key="link-exp-collapsed">
+        <Setter Property="Foreground" Value="#1DB8AB"></Setter>
+    </Style>
+    <Style TargetType="Hyperlink" BasedOn="{StaticResource link-exp}" x:Key="link-exp-expand">
+        <Setter Property="Foreground" Value="#189BC0"></Setter>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="txt-content">
+        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+    </Style>
+    <Style TargetType="Hyperlink" x:Key="link-content"  BasedOn="{StaticResource link-base}">
+        <Setter Property="Command" Value="{Binding RelativeSource={RelativeSource AncestorLevel=1,AncestorType={x:Type Button}},Path=Tag.ShowClippedCommand}"></Setter>
+        <Setter Property="CommandParameter" Value="{Binding RelativeSource={RelativeSource AncestorLevel=1,AncestorType={x:Type Button}},Path=DataContext}"></Setter>
+        <Setter Property="Foreground" Value="#fff"></Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="true">
+                <Setter Property="Foreground" Value="#d3494e"></Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <!--折叠根节点-->
+    <Style TargetType="Button" x:Key="button-root" BasedOn="{StaticResource button-base}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Border Style="{StaticResource border-collapsed}">
+                        <Grid>
+                            <TextBlock Style="{StaticResource txt-content}">
+                                <b:Interaction.Triggers>
+                                    <b:EventTrigger EventName="TouchDown">
+                                        <b:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorLevel=1,AncestorType={x:Type Button}},Path=Tag.ShowClippedCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorLevel=1,AncestorType={x:Type Button}},Path=DataContext}" />
+                                    </b:EventTrigger>
+                                </b:Interaction.Triggers>
+                                <Hyperlink Style="{StaticResource link-content}">
+                                    <Run Text="{Binding Name}"></Run>
+                                </Hyperlink>
+                            </TextBlock>
+                            <Border Style="{StaticResource toggle-right}">
+                                <b:Interaction.Triggers>
+                                    <b:EventTrigger EventName="TouchDown">
+                                        <b:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorLevel=1,AncestorType={x:Type Button}},Path=Tag.BomCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorLevel=1,AncestorType={x:Type Button}}}" />
+                                    </b:EventTrigger>
+                                </b:Interaction.Triggers>
+                                <TextBlock Style="{StaticResource toggle-text}">
+                                    <Hyperlink Style="{StaticResource link-bom-collapsed}">+</Hyperlink>
+                                </TextBlock>
+                            </Border>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--展开根节点-->
+    <Style TargetType="Button" x:Key="button-expand-root" BasedOn="{StaticResource button-base}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Border Style="{StaticResource border-expand}">
+                        <Grid>
+                            <TextBlock Style="{StaticResource txt-content}">
+                                <b:Interaction.Triggers>
+                                    <b:EventTrigger EventName="TouchDown">
+                                        <b:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorLevel=1,AncestorType={x:Type Button}},Path=Tag.ShowClippedCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorLevel=1,AncestorType={x:Type Button}},Path=DataContext}" />
+                                    </b:EventTrigger>
+                                </b:Interaction.Triggers>
+                                <Hyperlink Style="{StaticResource link-content}">
+                                    <Run Text="{Binding Name}"></Run>
+                                </Hyperlink>
+                            </TextBlock>
+                            <Border Style="{StaticResource toggle-right}">
+                                <b:Interaction.Triggers>
+                                    <b:EventTrigger EventName="TouchDown">
+                                        <b:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorLevel=1,AncestorType={x:Type Button}},Path=Tag.BomCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorLevel=1,AncestorType={x:Type Button}}}" />
+                                    </b:EventTrigger>
+                                </b:Interaction.Triggers>
+                                <TextBlock Style="{StaticResource toggle-text}">
+                                    <Hyperlink Style="{StaticResource link-bom-expand}">-</Hyperlink>
+                                </TextBlock>
+                            </Border>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--叶子节点-->
+    <Style TargetType="Button" x:Key="button-leaf" BasedOn="{StaticResource button-base}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Border CornerRadius="15" Background="{Binding Converter={StaticResource blc}}">
+                        <Grid>
+                            <Border Style="{StaticResource toggle-left-bvc}">
+                                <b:Interaction.Triggers>
+                                    <b:EventTrigger EventName="TouchDown">
+                                        <b:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorLevel=1,AncestorType={x:Type Button}},Path=Tag.BomCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorLevel=1,AncestorType={x:Type Button}}}" />
+                                    </b:EventTrigger>
+                                </b:Interaction.Triggers>
+                                <TextBlock Style="{StaticResource toggle-text}">
+                                    <Hyperlink Style="{StaticResource link-bom}" Foreground="{Binding RelativeSource={RelativeSource AncestorLevel=2,AncestorType={x:Type Border}},Path=Background}">+</Hyperlink>
+                                </TextBlock>
+                            </Border>
+                            <TextBlock Style="{StaticResource txt-content}">
+                                <b:Interaction.Triggers>
+                                    <b:EventTrigger EventName="TouchDown">
+                                        <b:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorLevel=1,AncestorType={x:Type Button}},Path=Tag.ShowClippedCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorLevel=1,AncestorType={x:Type Button}},Path=DataContext}" />
+                                    </b:EventTrigger>
+                                </b:Interaction.Triggers>
+                                <Hyperlink Style="{StaticResource link-content}">
+                                    <Run Text="{Binding Name}"></Run>
+                                </Hyperlink>
+                            </TextBlock>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--展开Exp-->
+    <Style TargetType="Button" x:Key="button-expand-exp" BasedOn="{StaticResource button-base}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Border Style="{StaticResource border-expand}">
+                        <Grid>
+                            <Border Style="{StaticResource toggle-left-bvc}">
+                                <b:Interaction.Triggers>
+                                    <b:EventTrigger EventName="TouchDown">
+                                        <b:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorLevel=1,AncestorType={x:Type Button}},Path=Tag.BomCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorLevel=1,AncestorType={x:Type Button}}}" />
+                                    </b:EventTrigger>
+                                </b:Interaction.Triggers>
+                                <TextBlock Style="{StaticResource toggle-text}" Padding="0">
+                                    <Hyperlink Style="{StaticResource link-bom-expand}">▼</Hyperlink>
+                                </TextBlock>
+                            </Border>
+                            <TextBlock Style="{StaticResource txt-content}">
+                                <b:Interaction.Triggers>
+                                    <b:EventTrigger EventName="TouchDown">
+                                        <b:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorLevel=1,AncestorType={x:Type Button}},Path=Tag.ShowClippedCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorLevel=1,AncestorType={x:Type Button}},Path=DataContext}" />
+                                    </b:EventTrigger>
+                                </b:Interaction.Triggers>
+                                <Hyperlink Style="{StaticResource link-content}">
+                                    <Run Text="{Binding Name}"></Run>
+                                </Hyperlink>
+                            </TextBlock>
+                            <Border Style="{StaticResource toggle-right-evc}">
+                                <b:Interaction.Triggers>
+                                    <b:EventTrigger EventName="TouchDown">
+                                        <b:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorLevel=1,AncestorType={x:Type Button}},Path=Tag.ExpCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorLevel=1,AncestorType={x:Type Button}}}" />
+                                    </b:EventTrigger>
+                                </b:Interaction.Triggers>
+                                <TextBlock Style="{StaticResource toggle-text}">
+                                    <Hyperlink Style="{StaticResource link-exp-expand}">-</Hyperlink>
+                                </TextBlock>
+                            </Border>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--展开Bom-->
+    <Style TargetType="Button" x:Key="button-expand-bom" BasedOn="{StaticResource button-base}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Border Style="{StaticResource border-expand}">
+                        <Grid>
+                            <Border Style="{StaticResource toggle-left-bvc}">
+                                <b:Interaction.Triggers>
+                                    <b:EventTrigger EventName="TouchDown">
+                                        <b:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorLevel=1,AncestorType={x:Type Button}},Path=Tag.BomCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorLevel=1,AncestorType={x:Type Button}}}" />
+                                    </b:EventTrigger>
+                                </b:Interaction.Triggers>
+                                <TextBlock Style="{StaticResource toggle-text}" Padding="0 0 0 4">
+                                    <Hyperlink Style="{StaticResource link-bom-expand}">▲</Hyperlink>
+                                </TextBlock>
+                            </Border>
+                            <TextBlock Style="{StaticResource txt-content}">
+                                <b:Interaction.Triggers>
+                                    <b:EventTrigger EventName="TouchDown">
+                                        <b:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorLevel=1,AncestorType={x:Type Button}},Path=Tag.ShowClippedCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorLevel=1,AncestorType={x:Type Button}},Path=DataContext}" />
+                                    </b:EventTrigger>
+                                </b:Interaction.Triggers>
+                                <Hyperlink Style="{StaticResource link-content}">
+                                    <Run Text="{Binding Name}"></Run>
+                                </Hyperlink>
+                            </TextBlock>
+                            <Border Style="{StaticResource toggle-right-evc}">
+                                <b:Interaction.Triggers>
+                                    <b:EventTrigger EventName="TouchDown">
+                                        <b:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorLevel=1,AncestorType={x:Type Button}},Path=Tag.ExpCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorLevel=1,AncestorType={x:Type Button}}}" />
+                                    </b:EventTrigger>
+                                </b:Interaction.Triggers>
+                                <TextBlock Style="{StaticResource toggle-text}">
+                                    <Hyperlink Style="{StaticResource link-exp-expand}">+</Hyperlink>
+                                </TextBlock>
+                            </Border>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--全部折叠-->
+    <Style TargetType="Button" x:Key="button-collapsed" BasedOn="{StaticResource button-base}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Border Style="{StaticResource border-collapsed}">
+                        <Grid>
+                            <Border Style="{StaticResource toggle-left-bvc}">
+                                <b:Interaction.Triggers>
+                                    <b:EventTrigger EventName="TouchDown">
+                                        <b:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorLevel=1,AncestorType={x:Type Button}},Path=Tag.BomCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorLevel=1,AncestorType={x:Type Button}}}" />
+                                    </b:EventTrigger>
+                                </b:Interaction.Triggers>
+                                <TextBlock Style="{StaticResource toggle-text}" Padding="0">
+                                    <Hyperlink Style="{StaticResource link-bom-collapsed}">▼</Hyperlink>
+                                </TextBlock>
+                            </Border>
+                            <TextBlock Style="{StaticResource txt-content}">
+                                <b:Interaction.Triggers>
+                                    <b:EventTrigger EventName="TouchDown">
+                                        <b:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorLevel=1,AncestorType={x:Type Button}},Path=Tag.ShowClippedCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorLevel=1,AncestorType={x:Type Button}},Path=DataContext}" />
+                                    </b:EventTrigger>
+                                </b:Interaction.Triggers>
+                                <Hyperlink Style="{StaticResource link-content}">
+                                    <Run Text="{Binding Name}"></Run>
+                                </Hyperlink>
+                            </TextBlock>
+                            <Border Style="{StaticResource toggle-right-evc}">
+                                <b:Interaction.Triggers>
+                                    <b:EventTrigger EventName="TouchDown">
+                                        <b:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorLevel=1,AncestorType={x:Type Button}},Path=Tag.ExpCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorLevel=1,AncestorType={x:Type Button}}}" />
+                                    </b:EventTrigger>
+                                </b:Interaction.Triggers>
+                                <TextBlock Style="{StaticResource toggle-text}">
+                                    <Hyperlink Style="{StaticResource link-exp-collapsed}">+</Hyperlink>
+                                </TextBlock>
+                            </Border>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

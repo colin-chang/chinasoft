@@ -1,0 +1,36 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Com.ChinaSoft.Resource;Component/Style/DataGridDict.xaml"></ResourceDictionary>
+    </ResourceDictionary.MergedDictionaries>
+    
+    <Style TargetType="DataGrid" BasedOn="{StaticResource baseDataGrid}">
+        <Setter Property="Background" Value="#fff"></Setter>
+        <Setter Property="HorizontalGridLinesBrush" Value="#E5E6EB"></Setter>
+    </Style>
+    <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource baseColumnHeader}">
+        <Setter Property="Background" Value="#DDD"></Setter>
+        <Setter Property="Foreground" Value="#7A7A7A"></Setter>
+    </Style>
+    <Style TargetType="DataGridCell">
+        <Setter Property="Foreground" Value="#6F6F6F"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="DataGridCell">
+                    <Border Background="Transparent"
+                  BorderBrush="{TemplateBinding BorderBrush}"  
+                  BorderThickness="0" 
+                  SnapsToDevicePixels="True" Name="bd">
+                        <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="bd" Property="Background" Value="#EFEFEF"></Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

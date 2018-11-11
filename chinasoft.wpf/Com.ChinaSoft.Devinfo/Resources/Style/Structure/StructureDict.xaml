@@ -1,0 +1,275 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:cvt="clr-namespace:Com.ChinaSoft.Devinfo.Expands.Converter"
+                    xmlns:uc="clr-namespace:Com.ChinaSoft.Devinfo.UserControls"
+                     xmlns:ucs="clr-namespace:Com.ChinaSoft.UserControls;assembly=Com.ChinaSoft.UserControls">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Com.ChinaSoft.Resource;Component/Style/CommonDict.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/Com.ChinaSoft.Resource;Component/Style/SearchDict.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/Com.ChinaSoft.Resource;Component/Style/DataGridDict.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/Com.ChinaSoft.Resource;Component/Style/CustomTableDict.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/Com.ChinaSoft.Resource;Component/Style/CustomListBoxStyle.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/Com.ChinaSoft.Resource;Component/Style/CustomScrollViewerDict.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <!--搜索框-->
+    <Style TargetType="Border" x:Key="search-container" BasedOn="{StaticResource search-container-base}">
+        <Setter Property="Width" Value="300"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+    </Style>
+    <Style TargetType="TextBox" x:Key="search-body" BasedOn="{StaticResource search-body-base}">
+        <Setter Property="Width" Value="260"></Setter>
+    </Style>
+
+    <!--按钮组-->
+    <Style TargetType="StackPanel" x:Key="panel-buttons">
+        <Setter Property="Orientation" Value="Horizontal"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        <Setter Property="Margin" Value="0 15"></Setter>
+    </Style>
+    <!--Bom结构-->
+    <Style TargetType="ListBox" x:Key="box-bom" BasedOn="{StaticResource ListBoxCustomStyle}">
+        <Setter Property="Height" Value="615"></Setter>
+        <Setter Property="Background" Value="#343645"></Setter>
+        <Setter Property="BorderThickness" Value="0"></Setter>
+    </Style>
+
+
+    <Style TargetType="StackPanel" x:Key="panel-content">
+        <Setter Property="Grid.Column" Value="1"></Setter>
+        <Setter Property="Margin" Value="15 0 0 0"></Setter>
+    </Style>
+    <!--面包屑导航-->
+    <Style TargetType="Hyperlink">
+        <Setter Property="TextDecorations" Value="None"></Setter>
+        <Setter Property="Foreground" Value="#fff"></Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="true">
+                <Setter Property="Foreground" Value="LightBlue"></Setter>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="false">
+                <Setter Property="Foreground" Value="#888"></Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--内容区-->
+    <Style TargetType="Grid" x:Key="grid-body">
+        <Setter Property="Margin" Value="0 20 0 0"></Setter>
+        <Setter Property="Height" Value="660"></Setter>
+    </Style>
+    <cvt:StructureContentVisibilityConverter x:Key="scvc" />
+    <cvt:Structure2DHeightConverter x:Key="s2hc" />
+    <cvt:OpenZoomPopVisibilityConverter x:Key="zpv"></cvt:OpenZoomPopVisibilityConverter>
+    <cvt:StructureToolbarVisibilityConverter x:Key="stvc"></cvt:StructureToolbarVisibilityConverter>
+    <Style TargetType="TextBlock" x:Key="txt-catalog" BasedOn="{StaticResource prompt}">
+        <Setter Property="Visibility" Value="{Binding Paths,Converter={StaticResource scvc},ConverterParameter=catalog}"></Setter>
+    </Style>
+    <Style TargetType="DockPanel" x:Key="panel-position-element">
+        <Setter Property="Visibility" Value="{Binding Paths,Converter={StaticResource scvc},ConverterParameter=position-element}"></Setter>
+    </Style>
+    <Style TargetType="Grid" x:Key="grid-position-element">
+        <Setter Property="DockPanel.Dock" Value="Left"></Setter>
+        <Setter Property="Width" Value="860"></Setter>
+    </Style>
+    <Style TargetType="uc:ImageViewer" x:Key="image-2D">
+        <Setter Property="Height" Value="{Binding Paths,Converter={StaticResource s2hc}}"></Setter>
+        <Setter Property="Margin" Value="0 0 0 15"></Setter>
+    </Style>
+    <Style TargetType="Border" x:Key="item-header-com" BasedOn="{StaticResource item-header}">
+        <Setter Property="Height" Value="35"></Setter>
+    </Style>
+    <Style TargetType="ucs:BindingWebBrowser" x:Key="wb-explode">
+        <Setter Property="Height" Value="355"></Setter>
+    </Style>
+
+    <Style TargetType="StackPanel" x:Key="panel-toolbar">
+        <Setter Property="DockPanel.Dock" Value="Right"></Setter>
+        <Setter Property="Background" Value="#343645"></Setter>
+    </Style>
+    <Style TargetType="StackPanel" x:Key="panel-toolbar-position" BasedOn="{StaticResource panel-toolbar}">
+        <Setter Property="Visibility" Value="{Binding Paths,Converter={StaticResource stvc},ConverterParameter=position}"></Setter>
+    </Style>
+    <Style TargetType="StackPanel" x:Key="panel-toolbar-element" BasedOn="{StaticResource panel-toolbar}">
+        <Setter Property="Visibility" Value="{Binding Paths,Converter={StaticResource stvc},ConverterParameter=element}"></Setter>
+    </Style>
+
+    <Style TargetType="Button" x:Key="button-bar">
+        <Setter Property="Margin" Value="0 5 0 0"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+    </Style>
+    <Style TargetType="Border" x:Key="border-model">
+        <Setter Property="Width" Value="45"></Setter>
+        <Setter Property="Height" Value="45"></Setter>
+        <Setter Property="BorderThickness" Value="2"></Setter>
+        <Setter Property="BorderBrush" Value="Transparent"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+    </Style>
+    <Style TargetType="Image" x:Key="img-bar">
+        <Setter Property="Width" Value="30"></Setter>
+    </Style>
+    <Style TargetType="Button" x:Key="button-explode" BasedOn="{StaticResource button-bar}">
+        <Setter Property="IsEnabled" Value="{Binding HasExplode}"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Border Style="{StaticResource border-model}" Name="bd">
+                        <Image Source="/Images/Structure/explode.png" Name="img" Style="{StaticResource img-bar}"></Image>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="bd" Property="BorderBrush" Value="#2589AF"></Setter>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter TargetName="img" Property="Source" Value="/Images/Structure/explode-disabled.png"></Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="Button" x:Key="button-3D" BasedOn="{StaticResource button-bar}">
+        <Setter Property="IsEnabled" Value="{Binding Has3D}"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Border Style="{StaticResource border-model}" Name="bd">
+                        <Image Source="/Images/Structure/3D.png" Name="img" Style="{StaticResource img-bar}"></Image>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="bd" Property="BorderBrush" Value="#2589AF"></Setter>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter TargetName="img" Property="Source" Value="/Images/Structure/3D-disabled.png"></Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="Button" x:Key="button-2D" BasedOn="{StaticResource button-bar}">
+        <Setter Property="IsEnabled" Value="{Binding Has2D}"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Border Style="{StaticResource border-model}" Name="bd">
+                        <Image Source="/Images/Structure/2D.png" Name="img" Style="{StaticResource img-bar}"></Image>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="bd" Property="BorderBrush" Value="#2589AF"></Setter>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter TargetName="img" Property="Source" Value="/Images/Structure/2D-disabled.png"></Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="Button" x:Key="button-docs" BasedOn="{StaticResource button-bar}">
+        <Setter Property="IsEnabled" Value="{Binding HasDocs}"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Border Style="{StaticResource border-model}" Name="bd">
+                        <Image Source="/Images/Structure/documents.png" Name="img" Style="{StaticResource img-bar}"></Image>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="bd" Property="BorderBrush" Value="#2589AF"></Setter>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter TargetName="img" Property="Source" Value="/Images/Structure/documents-disabled.png"></Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="Rectangle" x:Key="block-break">
+        <Setter Property="Width" Value="45"></Setter>
+        <Setter Property="Height" Value="10"></Setter>
+        <Setter Property="Margin" Value="0 20"></Setter>
+        <Setter Property="Fill" Value="#4C4E60"></Setter>
+    </Style>
+    <!--<Style TargetType="ListBox" x:Key="box-file" BasedOn="{StaticResource ListBoxCustomStyle}">
+        <Setter Property="Height" Value="448"></Setter>
+        <Setter Property="Width" Value="55"></Setter>
+        <Setter Property="Background" Value="Transparent"></Setter>
+        <Setter Property="BorderThickness" Value="0"></Setter>
+    </Style>-->
+
+    <cvt:StructureModelVisibilityConverter x:Key="smvc"></cvt:StructureModelVisibilityConverter>
+    <Style TargetType="TextBlock" x:Key="txt-none" BasedOn="{StaticResource prompt}">
+        <Setter Property="Visibility" Value="{Binding ModelStatus,Converter={StaticResource smvc},ConverterParameter=None}"></Setter>
+    </Style>
+    <Style TargetType="StackPanel" x:Key="panel-explode">
+        <Setter Property="Visibility" Value="{Binding ModelStatus,Converter={StaticResource smvc},ConverterParameter=Explode}"></Setter>
+    </Style>
+    <Style TargetType="ucs:BindingWebBrowser" x:Key="wb-3D">
+        <Setter Property="Visibility" Value="{Binding ModelStatus,Converter={StaticResource smvc},ConverterParameter=ThreeD}"></Setter>
+    </Style>
+    <Style TargetType="StackPanel" x:Key="panel-2D">
+        <Setter Property="Visibility" Value="{Binding ModelStatus,Converter={StaticResource smvc},ConverterParameter=TwoD}"></Setter>
+    </Style>
+    <Style TargetType="ScrollViewer" x:Key="panel-docs" BasedOn="{StaticResource FavsScrollViewer}">
+        <Setter Property="Visibility" Value="{Binding ModelStatus,Converter={StaticResource smvc},ConverterParameter=Documents}"></Setter>
+    </Style>
+    <Style TargetType="DocumentViewer" x:Key="doc-word">
+        <Setter Property="Visibility" Value="{Binding ModelStatus,Converter={StaticResource smvc},ConverterParameter=Document_Word}"></Setter>
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"></Setter>
+        <Setter Property="ScrollViewer.PanningMode" Value="Both"></Setter>
+    </Style>
+    <cvt:StructurePdfViewerOpacityConverter x:Key="spoc"></cvt:StructurePdfViewerOpacityConverter>
+    <Style TargetType="uc:PdfViewer" x:Key="doc-pdf">
+        <Setter Property="Opacity" Value="{Binding ModelStatus,Converter={StaticResource spoc},ConverterParameter=Document_PDF}"></Setter>
+    </Style>
+    <Style TargetType="uc:ImageViewer" x:Key="doc-photo">
+        <Setter Property="Visibility" Value="{Binding ModelStatus,Converter={StaticResource smvc},ConverterParameter=Document_Photo}"></Setter>
+    </Style>
+    <Style TargetType="ucs:BindingWebBrowser" x:Key="doc-html">
+        <Setter Property="Visibility" Value="{Binding ModelStatus,Converter={StaticResource smvc},ConverterParameter=Document_Html}"></Setter>
+    </Style>
+    <Style TargetType="Grid" x:Key="doc-video">
+        <Setter Property="Visibility" Value="{Binding ModelStatus,Converter={StaticResource smvc},ConverterParameter=Document_Video}"></Setter>
+    </Style>
+
+    <Style TargetType="StackPanel" x:Key="panel-circuit">
+        <Setter Property="Visibility" Value="{Binding Paths,Converter={StaticResource scvc},ConverterParameter=circuit}"></Setter>
+    </Style>
+    <Style TargetType="WebBrowser" x:Key="wb-circuit">
+        <Setter Property="Height" Value="455"></Setter>
+    </Style>
+    <Style TargetType="Popup" x:Key="pop-zoom">
+        <Setter Property="IsOpen" Value="{Binding Paths,Converter={StaticResource zpv},Mode=OneWay}"></Setter>
+        <Setter Property="PlacementTarget" Value="{Binding ElementName=wb_circuit}"></Setter>
+        <Setter Property="Placement" Value="Relative"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+        <Setter Property="VerticalAlignment" Value="Top"></Setter>
+        <Setter Property="AllowsTransparency" Value="True"></Setter>
+    </Style>
+    <Style TargetType="Image" x:Key="img-zoom">
+        <Setter Property="Margin" Value="22 2"></Setter>
+        <Setter Property="Width" Value="22"></Setter>
+        <Setter Property="Height" Value="22"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+    </Style>
+    <!--<Style TargetType="ListBox" x:Key="box-circuitfunc">
+        <Setter Property="Width" Value="280"></Setter>
+    </Style>-->
+    <Style TargetType="DataGrid" BasedOn="{StaticResource baseDataGrid}">
+        <Setter Property="Height" Value="300"></Setter>
+        <Setter Property="Background" Value="#282A36"></Setter>
+        <Setter Property="RowBackground" Value="#282A36"></Setter>
+    </Style>
+    <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource baseColumnHeader}">
+        <Setter Property="Background" Value="#3F4257"></Setter>
+    </Style>
+</ResourceDictionary>

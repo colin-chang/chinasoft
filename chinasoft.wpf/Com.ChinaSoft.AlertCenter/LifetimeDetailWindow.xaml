@@ -1,0 +1,178 @@
+﻿<Window x:Class="Com.ChinaSoft.AlertCenter.LifetimeDetailWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:uc="clr-namespace:Com.ChinaSoft.UserControls;assembly=Com.ChinaSoft.UserControls"
+        xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        xmlns:calendar="clr-namespace:Com.ChinaSoft.UserControls.Calendar;assembly=Com.ChinaSoft.UserControls"
+        xmlns:roundCorner="clr-namespace:Com.ChinaSoft.UserControls.RoundCorner;assembly=Com.ChinaSoft.UserControls"
+        mc:Ignorable="d" WindowStyle="None" AllowsTransparency="True" Background="Transparent"
+        WindowStartupLocation="CenterOwner"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="12"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Title="寿命预警详细信息" Height="523" Width="896" x:ClassModifier="internal">
+
+    <Window.Resources>
+        <ResourceDictionary Source="/Resources/Style/LifetimeDetailDict.xaml" />
+    </Window.Resources>
+
+    <Grid Name="Panel">
+        <roundCorner:RoundCornerPanel Title="寿命预警详细信息">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.8*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TabControl Grid.Column="0" SelectedIndex="{Binding SelectedTabIndex}">
+                    <TabItem Header="预警图">
+                        <Border Style="{StaticResource TabItem-AlertPicture}">
+                            <Image Source="{Binding ImagePath}" />
+                        </Border>
+                    </TabItem>
+                    <TabItem Header="换件历史">
+                        <TabItem.Resources>
+                            <ResourceDictionary Source="/Resources/Style/AlertHistoryDataGrid.xaml" />
+                        </TabItem.Resources>
+                        <DataGrid DataContext="{Binding BomChangeList}" ItemsSource="{Binding}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="换件时间" Width="1*"
+                                                    Binding="{Binding ChangeDateStr,Converter={StaticResource Dtstf}}" />
+                                <DataGridTextColumn Header="换件人" Width="1*" Binding="{Binding InputUser}" />
+                                <DataGridTextColumn Header="部件" Width="1*" Binding="{Binding ElementName}" />
+                                <DataGridTextColumn Header="预警时间" Width="1*"
+                                                    Binding="{Binding AlertTimeStr,Converter={StaticResource Dtstf}}" />
+                                <DataGridTextColumn Header="换件原因" Width="2*" Binding="{Binding ChangeReason}" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </TabItem>
+                    <TabItem Header="换件">
+                        <Grid Style="{StaticResource TabItem-BaoXiu}">
+                            <Grid Margin="0,15,20,15" DataContext="{Binding BomDetail}">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="1*" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Style="{StaticResource TbFormLabel}" Text="备件名称" />
+                                <TextBlock Style="{StaticResource TbFormValue}" Text="{Binding ElementName}"
+                                           VerticalAlignment="Center" Grid.Column="1" />
+                                <TextBlock Style="{StaticResource TbFormLabel}" Text="规格型号" Grid.Column="2" />
+                                <TextBlock Style="{StaticResource TbFormValue}" Text="{Binding ElementModel}"
+                                           VerticalAlignment="Center" Grid.Column="4" />
+                                <TextBlock Style="{StaticResource TbFormLabel}" Text="材质" Grid.Row="1" />
+                                <TextBlock Style="{StaticResource TbFormValue}" Text="{Binding Nature}" Grid.Row="1"
+                                           Grid.Column="1" />
+                                <TextBlock Text="生产厂家" Style="{StaticResource TbFormLabel}" Grid.Row="1"
+                                           Grid.Column="2" />
+                                <TextBlock Style="{StaticResource TbFormValue}" Text="{Binding Supplier}"
+                                           VerticalAlignment="Center" Grid.Row="1"
+                                           Grid.Column="3" />
+                                <TextBlock Style="{StaticResource TbFormLabel}" Text="理论寿命" Grid.Row="2" />
+                                <TextBlock Style="{StaticResource TbFormValue}" Text="{Binding UsedLifeStr}"
+                                           VerticalAlignment="Center" Grid.Row="2"
+                                           Grid.Column="1" />
+                                <TextBlock Style="{StaticResource TbFormLabel}" Text="换件数量" Grid.Row="2"
+                                           Grid.Column="2" />
+                                <ComboBox Grid.Row="2" Grid.Column="3" Height="25" SelectedValue="{Binding ChangeNum}">
+                                    <ComboBox.ItemsSource>
+                                        <x:Array Type="system:Int32">
+                                            <system:Int32>1</system:Int32>
+                                            <system:Int32>2</system:Int32>
+                                            <system:Int32>3</system:Int32>
+                                            <system:Int32>4</system:Int32>
+                                            <system:Int32>5</system:Int32>
+                                        </x:Array>
+                                    </ComboBox.ItemsSource>
+                                </ComboBox>
+                                <TextBlock Style="{StaticResource TbFormLabel}" Text="换件原因" Grid.Row="3" />
+                                <ComboBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"
+                                          SelectedValue="{Binding ChangeReason}">
+                                    <ComboBox.ItemsSource>
+                                        <x:Array Type="system:String">
+                                            <system:String>寿命到期</system:String>
+                                        </x:Array>
+                                    </ComboBox.ItemsSource>
+                                </ComboBox>
+                                <!--<TextBox Text="{Binding ChangeReason}" Height="25" Grid.Row="3"
+                                         Grid.Column="1" Grid.ColumnSpan="3" />-->
+                                <TextBlock Style="{StaticResource TbFormLabel}" Text="换件时间" Grid.Row="4" />
+                                <calendar:CalendarView Value="{Binding ChangeDateStr,Mode=TwoWay}"
+                                                       VerticalAlignment="Center" Grid.Row="4" Grid.Column="1" />
+
+                                <TextBlock Text="换件人" Style="{StaticResource TbFormLabel}" Grid.Row="4" Grid.Column="2" />
+                                <TextBlock Style="{StaticResource TbFormValue}" Text="{Binding InputUser}"
+                                           Margin="0,0,10,0" Grid.Row="4" Grid.Column="3" />
+
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="5"
+                                            Grid.ColumnSpan="4">
+                                    <Button Style="{StaticResource Form-SubmitButton}" Content="提交"
+                                            Visibility="{Binding RelativeSource={RelativeSource AncestorLevel=1,AncestorType=TabItem},Path=DataContext.SubmitButtonVisibility}"
+                                            Command="{Binding RelativeSource={RelativeSource AncestorLevel=1,AncestorType=TabItem},Path=DataContext.ChangeBomCommand}" />
+                                </StackPanel>
+                            </Grid>
+                        </Grid>
+                    </TabItem>
+                </TabControl>
+                <StackPanel Grid.Column="1" DataContext="{Binding BomDetail}" Style="{StaticResource Panel-Right}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="45" />
+                            <RowDefinition Height="45" />
+                            <RowDefinition Height="45" />
+                            <RowDefinition Height="45" />
+                            <RowDefinition Height="45" />
+                            <RowDefinition Height="45" />
+                            <RowDefinition Height="45" />
+                            <RowDefinition Height="45" />
+                            <RowDefinition Height="45" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="2*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Style="{StaticResource Txt-Label}" Text="备件名称" />
+                        <TextBlock Style="{StaticResource Txt-Highlight}" Text="{Binding ElementName}" Grid.Column="1" />
+                        <TextBlock Style="{StaticResource Txt-Label}" Text="规格型号" Grid.Row="1" />
+                        <TextBlock Style="{StaticResource Txt-Highlight}" Text="{Binding ElementModel}" Grid.Row="1"
+                                   Grid.Column="1" />
+                        <TextBlock Style="{StaticResource Txt-Label}" Text="材质" Grid.Row="2" />
+                        <TextBlock Style="{StaticResource Txt-Highlight}" Text="{Binding Nature}" Grid.Row="2"
+                                   Grid.Column="1" />
+                        <TextBlock Style="{StaticResource Txt-Label}" Text="生产厂家" Grid.Row="3" />
+                        <TextBlock Style="{StaticResource Txt-Highlight}" Text="{Binding Supplier}" Grid.Row="3"
+                                   Grid.Column="1" />
+                        <TextBlock Style="{StaticResource Txt-Label}" Text="理论寿命" Grid.Row="4" />
+                        <TextBlock Style="{StaticResource Txt-Highlight}" Text="{Binding UsedLifeStr}" Grid.Row="4"
+                                   Grid.Column="1" />
+                        <TextBlock Style="{StaticResource Txt-Label}" Text="上次换件时间" Grid.Row="5" />
+                        <TextBlock Style="{StaticResource Txt-Highlight}"
+                                   Text="{Binding LastChangeInfo.ChangeDateStrFormat}" Grid.Row="5" Grid.Column="1" />
+                        <TextBlock Style="{StaticResource Txt-Label}" Text="上次换件人" Grid.Row="6" />
+                        <TextBlock Style="{StaticResource Txt-Highlight}" Text="{Binding LastChangeInfo.InputUser}"
+                                   Grid.Row="6" Grid.Column="1" />
+                        <TextBlock Style="{StaticResource Txt-Label}" Text="上次换件原因" Grid.Row="7" />
+                        <TextBlock Style="{StaticResource Txt-Highlight}" Text="{Binding LastChangeInfo.ChangeReason}"
+                                   Grid.Row="7" Grid.Column="1" />
+                        <TextBlock Style="{StaticResource Txt-Label}" Text="本次到期时间" Grid.Row="8" />
+                        <TextBlock Style="{StaticResource Txt-Highlight}" Text="{Binding ChangeDateStrFormat}"
+                                   Grid.Row="8" Grid.Column="1" />
+                    </Grid>
+                </StackPanel>
+                <uc:ProgressRing x:Name="ring" />
+            </Grid>
+        </roundCorner:RoundCornerPanel>
+    </Grid>
+</Window>

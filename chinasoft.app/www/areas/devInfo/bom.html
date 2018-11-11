@@ -1,0 +1,126 @@
+<ion-view id="devInfoBom" cache-view="false">
+    <div id="bomSlide" class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide" ng-class="{'swiper-no-swiping':hasNothing}">
+                <ion-header-bar class="bar-calm item-input-inset">
+                    <button class="button button-calm button-icon icon ion-ios-arrow-back" ui-sref="indexTab.devInfo"></button>
+                    <label class="item-input-wrapper">
+                        <i class="icon ion-ios-search placeholder-icon"></i>
+                        <input type="search" placeholder="输入关键字搜索" ng-model="keyword">
+                    </label>
+                    <button class="button button-light button-clear" ng-click="cancel()">取消</button>
+                </ion-header-bar>
+                <header class="bar bar-subheader">
+                    <h2 class="title crumb">
+                        <span ng-click="selectCrumb(null,-1,false)">{{equipmentName}}</span>
+                        <small ng-repeat="crumb in crumbs" ng-click="selectCrumb(crumb,$index,$last)">/{{crumb.bomNm}}</small>
+                    </h2>
+                </header>
+                <ion-content class="has-header has-subheader">
+                    <ion-list>
+                        <ion-item ng-repeat="bom in boms|filter:{'bomNm':keyword}" ng-click="selectBom(bom.id)" class="item-avatar item-icon-right"
+                                  ng-class="{'active':((bom.bomEntryCode==='position'&&!!bom.isLeaf)||bom.bomEntryCode==='element'||bom.bomEntryCode==='circuit')&&bom.id===current.id}">
+                            <img ng-src="../../img/devInfo/{{bom.bomEntryCode}}.png">
+                            <h2>{{bom.bomNm}}</h2>
+                            <p>类型：{{bom.bomEntryName}}</p>
+                            <i class="icon ion-ios-arrow-right" ng-if="!bom.isLeaf"></i>
+                        </ion-item>
+                    </ion-list>
+                </ion-content>
+            </div>
+            <div ng-if="hasExplode" class="swiper-slide">
+                <ion-header-bar class="bar-calm">
+                    <div class="buttons">
+                        <button class="button button-calm button-icon icon ion-ios-arrow-back" ui-sref="indexTab.devInfo"></button>
+                    </div>
+                    <h1 class="title">爆炸图</h1>
+                </ion-header-bar>
+                <header class="bar bar-subheader">
+                    <h2 class="title crumb">
+                        <span ng-click="selectCrumb(null,-1,false)">{{equipmentName}}</span>
+                        <small ng-repeat="crumb in crumbs" ng-click="selectCrumb(crumb,$index,$last)">/{{crumb.bomNm}}</small>
+                    </h2>
+                </header>
+                <ion-content class="has-header has-subheader dark-bg">
+                    <img class="img-model" ng-src="{{explode}}" alt="爆炸图">
+                </ion-content>
+            </div>
+            <div ng-if="has3D" class="swiper-slide">
+                <ion-header-bar class="bar-calm">
+                    <div class="buttons">
+                        <button class="button button-calm button-icon icon ion-ios-arrow-back" ui-sref="indexTab.devInfo"></button>
+                    </div>
+                    <h1 class="title">3D模型</h1>
+                </ion-header-bar>
+                <header class="bar bar-subheader">
+                    <h2 class="title crumb">
+                        <span ng-click="selectCrumb(null,-1,false)">{{equipmentName}}</span>
+                        <small ng-repeat="crumb in crumbs" ng-click="selectCrumb(crumb,$index,$last)">/{{crumb.bomNm}}</small>
+                    </h2>
+                </header>
+                <ion-content class="has-header has-subheader dark-bg">
+                    <img class="img-model" src="http://115.28.209.159/files/devinfo/equipment/bom/photo/201351017580844.jpg" alt="3D模型">
+                </ion-content>
+            </div>
+            <div ng-if="has2D" class="swiper-slide">
+                <ion-header-bar class="bar-calm">
+                    <div class="buttons">
+                        <button class="button button-calm button-icon icon ion-ios-arrow-back" ui-sref="indexTab.devInfo"></button>
+                    </div>
+                    <h1 class="title">2D模型</h1>
+                </ion-header-bar>
+                <header class="bar bar-subheader">
+                    <h2 class="title crumb">
+                        <span ng-click="selectCrumb(null,-1,false)">{{equipmentName}}</span>
+                        <small ng-repeat="crumb in crumbs" ng-click="selectCrumb(crumb,$index,$last)">/{{crumb.bomNm}}</small>
+                    </h2>
+                </header>
+                <ion-content class="has-header has-subheader dark-bg">
+                    <img class="img-model" ng-src="{{_2D}}" alt="2D模型">
+                </ion-content>
+            </div>
+            <div ng-if="hasDocs" class="swiper-slide">
+                <ion-header-bar class="bar-calm">
+                    <div class="buttons">
+                        <button class="button button-calm button-icon icon ion-ios-arrow-back" ui-sref="indexTab.devInfo"></button>
+                    </div>
+                    <h1 class="title">文档</h1>
+                </ion-header-bar>
+                <header class="bar bar-subheader">
+                    <h2 class="title crumb">
+                        <span ng-click="selectCrumb(null,-1,false)">{{equipmentName}}</span>
+                        <small ng-repeat="crumb in crumbs" ng-click="selectCrumb(crumb,$index,$last)">/{{crumb.bomNm}}</small>
+                    </h2>
+                </header>
+                <ion-content class="has-header has-subheader">
+                    <ion-list>
+                        <ion-item ng-repeat="doc in docs" ng-click="openFile(doc)" class="item-avatar item-icon-right">
+                            <img ng-src="../../img/devInfo/{{doc.type}}.png">
+                            <h2>{{doc.name}}</h2>
+                            <p>类型：</p>
+                            <i class="icon ion-ios-arrow-right"></i>
+                        </ion-item>
+                    </ion-list>
+                </ion-content>
+            </div>
+            <div ng-if="hasCircuit" class="swiper-slide">
+                <ion-header-bar class="bar-calm">
+                    <div class="buttons">
+                        <button class="button button-calm button-icon icon ion-ios-arrow-back" ui-sref="indexTab.devInfo"></button>
+                    </div>
+                    <h1 class="title">电路图</h1>
+                </ion-header-bar>
+                <header class="bar bar-subheader">
+                    <h2 class="title crumb">
+                        <span ng-click="selectCrumb(null,-1,false)">{{equipmentName}}</span>
+                        <small ng-repeat="crumb in crumbs" ng-click="selectCrumb(crumb,$index,$last)">/{{crumb.bomNm}}</small>
+                    </h2>
+                </header>
+                <ion-content class="has-header has-subheader">
+                    <iframe ng-src="{{circuit}}"></iframe>
+                </ion-content>
+            </div>
+        </div>
+        <div ng-hide="hasNothing" class="swiper-pagination"></div>
+    </div>
+</ion-view>

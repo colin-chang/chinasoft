@@ -1,0 +1,6 @@
+﻿Tag_G_st_SRMSymAdd_ANPC_0	SRM_SymAdd	G_st_SRMSymAdd_ANPC	105	1	4	1000	前道当前班次过轻废品比率
+Tag_G_st_SRMSymAdd_ANPC_1	SRM_SymAdd	G_st_SRMSymAdd_ANPC	105	6	4	1000	前道当前班次过轻废品比率
+Tag_G_st_SRMSymAdd_ANPC_2	SRM_SymAdd	G_st_SRMSymAdd_ANPC	105	11	4	2000	前道当前班次过轻废品比率
+Tag_G_st_SRMSymAdd_ANPC_3	SRM_SymAdd	G_st_SRMSymAdd_ANPC	105	16	4	2000	前道当前班次过轻废品比率
+
+Tag_G_st_SRMSymAdd_ANPC_4	SRM_SymAdd	G_st_SRMSymAdd_ANPC	105	21	4	3000	前道当前班次过轻废品比率

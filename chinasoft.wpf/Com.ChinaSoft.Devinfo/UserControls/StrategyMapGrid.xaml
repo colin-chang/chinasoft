@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="Com.ChinaSoft.Devinfo.UserControls.StrategyMapGrid"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="768">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Style/Strategy/StrategyMapGridDict.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="/Resources/ControlTemplate/Strategy/StrategyMapGrid.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <DataGrid ItemsSource="{Binding Maps}" SelectedCellsChanged="DataGrid_SelectedCellsChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="部位" Binding="{Binding BomName}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="点检" Binding="{Binding CheckCount}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="润滑" Binding="{Binding LubricationCount}"  Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="保养" Binding="{Binding MaintainCount}"  Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="维修" Binding="{Binding RepairCount}"  Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="项修" Binding="{Binding ProImprCount}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="大修" Binding="{Binding BigImprCount}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="定期换件" Binding="{Binding ChangePartCount}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="状态监测" Binding="{Binding DetectPointCount}" Width="*"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

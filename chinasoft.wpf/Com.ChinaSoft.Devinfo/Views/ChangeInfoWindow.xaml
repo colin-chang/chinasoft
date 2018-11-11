@@ -1,0 +1,140 @@
+﻿<Window x:Class="Com.ChinaSoft.Devinfo.Views.ChangeInfoWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ucs="clr-namespace:Com.ChinaSoft.UserControls;assembly=Com.ChinaSoft.UserControls"
+        xmlns:cvt="clr-namespace:Com.ChinaSoft.Devinfo.Expands.Converter"
+        xmlns:calendar="clr-namespace:Com.ChinaSoft.UserControls.Calendar;assembly=Com.ChinaSoft.UserControls"
+        xmlns:b="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        mc:Ignorable="d"
+        Height="400" Width="560" WindowStyle="None" WindowStartupLocation="CenterOwner" Background="Transparent" AllowsTransparency="True" ShowInTaskbar="False">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Style/Spare/ChangeInfoDict.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Border Style="{StaticResource container}">
+        <DockPanel>
+            <Grid Style="{StaticResource grid-title}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Style="{StaticResource text-title}">换件信息</TextBlock>
+                <Button Style="{StaticResource button-close}" Command="{Binding CancelCommand}">
+                    <b:EventTrigger EventName="TouchDown">
+                        <b:InvokeCommandAction Command="{Binding CancelCommand}" />
+                    </b:EventTrigger>
+                </Button>
+            </Grid>
+            <Grid DockPanel.Dock="Bottom">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="60"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Border Style="{StaticResource border-body}">
+                    <TabControl SelectionChanged="TabControl_SelectionChanged"  Name="tab">
+                        <TabItem Header="换件">
+                            <Border Padding="50 10">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="85"></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition Width="20"></ColumnDefinition>
+                                        <ColumnDefinition Width="85"></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.Resources>
+                                        <cvt:ChangeInfoDateConverter x:Key="cidc"></cvt:ChangeInfoDateConverter>
+                                    </Grid.Resources>
+                                    <TextBlock Style="{StaticResource text-header}">备件名称</TextBlock>
+                                    <TextBlock Grid.Column="1" Style="{StaticResource text-content}" Text="{Binding ElementName}"></TextBlock>
+                                    <TextBlock Grid.Column="3" Style="{StaticResource text-header}">规格型号</TextBlock>
+                                    <TextBlock Grid.Column="4" Style="{StaticResource text-content}" Text="{Binding ElementModel}"></TextBlock>
+                                    <TextBlock Grid.Row="1" Style="{StaticResource text-header}">材质</TextBlock>
+                                    <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource text-content}" Text="{Binding Nature}"></TextBlock>
+                                    <TextBlock Grid.Row="1" Grid.Column="3" Style="{StaticResource text-header}">生产厂家</TextBlock>
+                                    <TextBlock Grid.Row="1" Grid.Column="4" Style="{StaticResource text-content}" Text="{Binding Supplier}"></TextBlock>
+                                    <TextBlock Grid.Row="2" Style="{StaticResource text-header}">理论寿命</TextBlock>
+                                    <TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource text-content}" Text="{Binding UsedLife}"></TextBlock>
+                                    <TextBlock Grid.Row="2" Grid.Column="3" Style="{StaticResource text-header}">换件数量</TextBlock>
+                                    <!--<TextBox Grid.Row="2" Grid.Column="4" Text="{Binding ChangeNum}"></TextBox>-->
+                                    <ComboBox Grid.Row="2" Grid.Column="4" SelectedValue="{Binding ChangeNum}" SelectedValuePath="Tag">
+                                        <ComboBoxItem Tag="1">1</ComboBoxItem>
+                                        <ComboBoxItem Tag="2">2</ComboBoxItem>
+                                        <ComboBoxItem Tag="3">3</ComboBoxItem>
+                                        <ComboBoxItem Tag="4">4</ComboBoxItem>
+                                        <ComboBoxItem Tag="5">5</ComboBoxItem>
+                                    </ComboBox>
+                                    <TextBlock Grid.Row="3" Style="{StaticResource text-header}">换件原因</TextBlock>
+                                    <!--<TextBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="4" Style="{StaticResource txt-lg}" Text="{Binding ChangeReason}"></TextBox>-->
+                                    <ComboBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="4" SelectedValue="{Binding ChangeReason}" SelectedValuePath="Tag">
+                                        <ComboBoxItem Tag="寿命到期">寿命到期</ComboBoxItem>
+                                    </ComboBox>
+                                    <TextBlock Grid.Row="4" Style="{StaticResource text-header}">换件时间</TextBlock>
+                                    <!--<TextBlock Grid.Row="4" Grid.Column="1" Style="{StaticResource text-content}"><Hyperlink Command="{Binding SelectDateCommand}"><Run Text="{Binding InputDate,Converter={StaticResource cidc},ConverterParameter=选择日期…}"></Run></Hyperlink></TextBlock>-->
+                                    <calendar:CalendarView Value="{Binding InputDate,Mode=TwoWay}" VerticalAlignment="Center" Grid.Row="4" Grid.Column="1" />
+                                    <TextBlock Grid.Row="4" Grid.Column="3" Style="{StaticResource text-header}">换件人</TextBlock>
+                                    <TextBlock Grid.Row="4" Grid.Column="4" Style="{StaticResource text-content}" Text="{Binding InputUser}"></TextBlock>
+                                    <!--<TextBlock Grid.Row="4" Grid.Column="4" Style="{StaticResource text-content}">张三</TextBlock>-->
+                                </Grid>
+                            </Border>
+                        </TabItem>
+                        <TabItem Header="换件历史">
+                            <TabItem.Resources>
+                                <ResourceDictionary>
+                                    <ResourceDictionary.MergedDictionaries>
+                                        <ResourceDictionary Source="/Resources/Style/Spare/ChangeHistoryDict.xaml"></ResourceDictionary>
+                                        <ResourceDictionary Source="/Com.ChinaSoft.Resource;Component/ControlTemplate/LazyLoadingDataGridControlTemplate.xaml"/>
+                                    </ResourceDictionary.MergedDictionaries>
+                                </ResourceDictionary>
+                            </TabItem.Resources>
+                            <DataGrid ItemsSource="{Binding History}" Template="{StaticResource LazyLoadingDataGrid}">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="换件原因" Binding="{Binding ChangeReason}" Width="*" />
+                                    <DataGridTextColumn Header="换件数量" Binding="{Binding ChangeNum}" Width="*" />
+                                    <DataGridTextColumn Header="换件人" Binding="{Binding InputUser}" Width="*" />
+                                    <DataGridTextColumn Header="换件时间" Binding="{Binding ChangeDateStr}" Width="*" />
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </TabItem>
+                    </TabControl>
+                </Border>
+                <Grid Grid.Row="1">
+                    <StackPanel Style="{StaticResource panel-operation}">
+                        <Button Style="{StaticResource button-group}" Command="{Binding SubmitCommand}" IsEnabled="{Binding IsValid}" TouchDown="Submit_Touch">保 存</Button>
+                        <Button Style="{StaticResource button-group}" Command="{Binding CancelCommand}" TouchDown="Cancel_Touch">取 消</Button>
+                    </StackPanel>
+                </Grid>
+                <!--<ucs:ProgressRing x:Name="ring" Grid.RowSpan="2"></ucs:ProgressRing>-->
+            </Grid>
+        </DockPanel>
+    </Border>
+</Window>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

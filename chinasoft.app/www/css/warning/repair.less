@@ -1,0 +1,33 @@
+#warningRepair {
+  .pictures {
+    padding: 20px 40px;
+    > div {
+      height: 150px;
+      border: 1px solid #ccc;
+      color: #aaa;
+      cursor: hand;
+      &:first-child {
+        margin-left: -10px;
+      }
+      &:last-child {
+        margin-left: 20px;
+      }
+      .takePicture {
+        margin-top: 40px;
+        font-size: 40px;
+        display: block;
+        opacity: .6;
+        margin-bottom: 10px;
+      }
+
+      img {
+        border: 1px solid red;
+        width: 100%;
+        position: relative;
+        left: 0;
+        top: 0;
+        z-index: -1;
+      }
+    }
+  }
+}

@@ -1,0 +1,54 @@
+<ion-view id="devInfoStrategyDetail" cache-view="false">
+    <ion-header-bar class="bar-calm item-input-inset">
+        <button class="button button-calm button-icon icon ion-ios-arrow-back" ui-sref="devInfo.strategy"></button>
+        <h1 class="title">维护策略详情</h1>
+    </ion-header-bar>
+    <ion-content class="has-header padding-vertical">
+        <ion-list ng-if="type==='check'">
+            <section ng-repeat="item in list">
+                <ion-item class="item-divider">{{typeName+' - '+($index+1)}}</ion-item>
+                <ion-item>点检分类<span class="item-note">{{item.className}}</span></ion-item>
+                <ion-item>点检周期<span class="item-note">{{item.cycleCount+' '+item.cycleUnitName}}</span></ion-item>
+                <ion-item>设备状态<span class="item-note">{{item.deviceStatus}}</span></ion-item>
+                <ion-item>点检项目<span class="item-note">{{item.item}}</span></ion-item>
+                <ion-item>点检内容<span class="item-note">{{item.content}}</span></ion-item>
+                <ion-item>点检标准<span class="item-note">{{item.benchMark}}</span></ion-item>
+                <ion-item>点检方式<span class="item-note">{{item.fashionName}}</span></ion-item>
+            </section>
+        </ion-list>
+        <ion-list ng-if="type==='lubrication'">
+            <section ng-repeat="item in list">
+                <ion-item class="item-divider">{{typeName+' - '+($index+1)}}</ion-item>
+                <ion-item>润滑周期<span class="item-note">{{item.cycleCount+' '+item.cycleUnitName}}</span></ion-item>
+                <ion-item>设备状态<span class="item-note">{{item.deviceStatus}}</span></ion-item>
+                <ion-item>国外油<span class="item-note">{{item.abroadOilName}}</span></ion-item>
+                <ion-item>国内油<span class="item-note">{{item.internalOilName}}</span></ion-item>
+                <ion-item>加注量<span class="item-note">{{item.quantity}}</span></ion-item>
+                <ion-item>润滑点数<span class="item-note">{{item.points}}</span></ion-item>
+                <ion-item>润滑方式<span class="item-note">{{item.fashionName}}</span></ion-item>
+            </section>
+        </ion-list>
+        <ion-list ng-if="type==='maintain'">
+            <section ng-repeat="item in list">
+                <ion-item class="item-divider">{{typeName+' - '+($index+1)}}</ion-item>
+                <ion-item>保养分类<span class="item-note">{{item.className}}</span></ion-item>
+                <ion-item>保养周期<span class="item-note">{{item.cycleCount+' '+item.cycleUnitName}}</span></ion-item>
+                <ion-item>设备状态<span class="item-note">{{item.deviceStatus}}</span></ion-item>
+                <ion-item>保养内容<span class="item-note">{{item.content}}</span></ion-item>
+                <ion-item>保养标准<span class="item-note">{{item.benchMark}}</span></ion-item>
+                <ion-item>保养工时<span class="item-note">{{item.manhour}}</span></ion-item>
+            </section>
+        </ion-list>
+        <ion-list ng-if="type==='repair'||type==='proImpr'||type==='bigImpr'">
+            <section ng-repeat="item in list">
+                <ion-item class="item-divider">{{typeName+' - '+($index+1)}}</ion-item>
+                <ion-item>设备状态<span class="item-note">{{item.deviceStatus}}</span></ion-item>
+                <ion-item>修理内容<span class="item-note">{{item.content}}</span></ion-item>
+                <ion-item>修理标准<span class="item-note">{{item.benchMark}}</span></ion-item>
+                <ion-item>花费工时<span class="item-note">{{item.manhour}}</span></ion-item>
+            </section>
+        </ion-list>
+        <ion-infinite-scroll ng-if="canLoadMore" on-infinite="loadMore()">
+        </ion-infinite-scroll>
+    </ion-content>
+</ion-view>

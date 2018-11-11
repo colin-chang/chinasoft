@@ -1,0 +1,142 @@
+﻿<local:KnowledgeUC x:Class="Com.ChinaSoft.Devinfo.Views.ExperienceBaseUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:cvt="clr-namespace:Com.ChinaSoft.Devinfo.Expands.Converter"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+             xmlns:b="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:local="clr-namespace:Com.ChinaSoft.Devinfo.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="746" d:DesignWidth="1280" Loaded="AllLoaded">
+
+    <local:KnowledgeUC.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Style/Knowledge/ExperienceBaseDict.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </local:KnowledgeUC.Resources>
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Border Style="{StaticResource hr}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource text-header}" Text="{Binding Root.Name}" HorizontalAlignment="Left"></TextBlock>
+                    <TextBlock Style="{StaticResource text-header}" Text=" / 专家经验库" HorizontalAlignment="Left"></TextBlock>
+                </StackPanel>
+                <Button Grid.Column="1" Style="{StaticResource button-goback}" Command="{Binding GoBackCommand}">
+                    <b:EventTrigger EventName="TouchDown">
+                        <b:InvokeCommandAction Command="{Binding GoBackCommand}" />
+                    </b:EventTrigger>
+                </Button>
+            </Grid>
+        </Border>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <!--<StackPanel Orientation="Horizontal">
+                <Button Style="{StaticResource button-group-first}" Click="ZoomIn">放大</Button>
+                <Button Style="{StaticResource button-group-item}" Click="ResetOrigin">原始</Button>
+                <Button Style="{StaticResource button-group-last}" Click="ZoomOut">缩小</Button>
+            </StackPanel>-->
+            <Border Style="{StaticResource search-container}" Grid.Column="1">
+                <StackPanel Orientation="Horizontal">
+                    <Button Style="{StaticResource button-search}" Click="BeginSearch"></Button>
+                    <TextBox Style="{StaticResource search-body}" Margin="0 0 10 0" Name="txtPart" GotFocus="PartFocus" LostFocus="PartLostFocus"></TextBox>
+                    <TextBox Style="{StaticResource search-body}" Name="txtFailure" GotFocus="FailureFocus" LostFocus="FailureLostFocus"></TextBox>
+                </StackPanel>
+            </Border>
+        </Grid>
+        <!--<ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" Background="LightCyan">
+            <i:Interaction.Behaviors>
+                <ei:MouseDragElementBehavior/>
+            </i:Interaction.Behaviors>
+            <Canvas Button.Click="NodeClicked" Name="canvas" Loaded="Canvas_Loaded" RenderTransformOrigin="0.5,0.5" Background="Gray">
+                <Canvas.RenderTransform>
+                    <ScaleTransform x:Name="st" ScaleY="1" ScaleX="1"/>
+                </Canvas.RenderTransform>
+            </Canvas>
+        </ScrollViewer>-->
+
+        <!--先拖动后缩放（外部容器默认占满父容器不能缩放，限制父容器范围内拖动时，无法拖动）-->
+        <!--<Grid Grid.Row="2">
+            <Grid Background="Red" Name="container" RenderTransformOrigin="0.5 0.5">
+                <i:Interaction.Behaviors>
+                    <ei:MouseDragElementBehavior ConstrainToParentBounds="True" />
+                </i:Interaction.Behaviors>
+                <Canvas Button.Click="NodeClicked" Name="canvas" Loaded="Canvas_Loaded" Background="LightGray"  RenderTransformOrigin="0.5 0.5">
+                    <Canvas.RenderTransform>
+                        <ScaleTransform x:Name="st" ScaleX="1" ScaleY="1"></ScaleTransform>
+                    </Canvas.RenderTransform>
+                </Canvas>
+            </Grid>
+        </Grid>-->
+        <!--先缩放后拖动(先缩放后，限定父容器范围内拖动时，内外尺寸一致无法拖动)-->
+        <!--<Grid Grid.Row="2">
+            <Grid RenderTransformOrigin="0.5 0.5" Background="Red" Name="container">
+                <Grid.RenderTransform>
+                    <ScaleTransform x:Name="st" ScaleX="1" ScaleY="1"></ScaleTransform>
+                </Grid.RenderTransform>
+                <Canvas Button.Click="NodeClicked" Name="canvas" Loaded="Canvas_Loaded" Background="LightGray"  >
+                    <i:Interaction.Behaviors>
+                        <ei:MouseDragElementBehavior ConstrainToParentBounds="True" />
+                    </i:Interaction.Behaviors>
+                </Canvas>
+            </Grid>
+        </Grid>-->
+
+        <!--缩放拖拽同时作用（拖拽后缩放失效）-->
+        <!--<Grid Grid.Row="2" ClipToBounds="True">
+            <Grid RenderTransformOrigin="0.5 0.5" Name="container" Background="Transparent">
+                <i:Interaction.Behaviors>
+                    <ei:MouseDragElementBehavior />
+                </i:Interaction.Behaviors>
+                <Canvas Name="canvas" Background="Transparent" Loaded="Canvas_Loaded">
+                </Canvas>
+            </Grid>
+        </Grid>-->
+
+        <!--<Grid Grid.Row="2" ClipToBounds="True">
+            <Grid x:Name="container" ClipToBounds="True" Background="Transparent">
+                <Canvas Name="canvas" Background="Transparent" Loaded="Canvas_Loaded" 
+                        RenderTransformOrigin="0.5 0.5"
+                        MouseWheel="Canvas_MouseWheel" 
+                        MouseLeftButtonDown="Canvas_MouseLeftButtonDown" 
+                        MouseMove="Canvas_MouseMove">
+                    <Canvas.RenderTransform>
+                        <TransformGroup>
+                            <TranslateTransform x:Name="translate" />
+                            <ScaleTransform x:Name="scale" />
+                        </TransformGroup>
+                    </Canvas.RenderTransform>
+                </Canvas>
+            </Grid>
+        </Grid>-->
+
+        <Grid Grid.Row="2" ClipToBounds="True">
+            <Grid x:Name="container" ClipToBounds="True" Background="Transparent"
+                ManipulationStarting="canvas_ManipulationStarting"
+                ManipulationDelta="canvas_ManipulationDelta"
+                ManipulationInertiaStarting="canvas_ManipulationInertiaStarting"
+                ManipulationCompleted="canvas_ManipulationCompleted">
+                <Canvas Name="canvas" Background="Transparent" Loaded="Canvas_Loaded" IsManipulationEnabled="True">
+                    <Canvas.RenderTransform>
+                        <MatrixTransform></MatrixTransform>
+                    </Canvas.RenderTransform>
+                </Canvas>
+            </Grid>
+        </Grid>
+    </Grid>
+</local:KnowledgeUC>

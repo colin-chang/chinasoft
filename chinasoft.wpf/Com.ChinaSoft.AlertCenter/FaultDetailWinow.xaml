@@ -1,0 +1,16 @@
+﻿<Window x:Class="Com.ChinaSoft.AlertCenter.FaultDetailWinow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:view="clr-namespace:Com.ChinaSoft.AlertCenter.Views"
+        xmlns:uc="clr-namespace:Com.ChinaSoft.UserControls;assembly=Com.ChinaSoft.UserControls"
+        mc:Ignorable="d" WindowStartupLocation="CenterOwner"
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent"
+        Title="故障预警详细信息" Height="523" Width="896" x:ClassModifier="internal">
+
+    <Grid Name="Panel">
+        <view:FaultInfoMainUC x:Name="mainUC" />
+        <uc:ProgressRing Name="ring" />
+    </Grid>
+</Window>

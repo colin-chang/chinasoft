@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="Com.ChinaSoft.Devinfo.UserControls.PdfViewer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mpp="clr-namespace:MoonPdfLib;assembly=MoonPdfLib"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="700">
+    <UserControl.Resources>
+        <ResourceDictionary Source="/Com.ChinaSoft.Resource;Component/Style/CommonDict.xaml"></ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border Background="#f0f0f0">
+            <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" Margin="15 0 0 0">
+                <Button Style="{StaticResource button-group-first}" Click="ZoomIn">放大</Button>
+                <Button Style="{StaticResource button-group-item}" Click="ZoomOut">缩小</Button>
+                <Button Style="{StaticResource button-group-item}" Click="ResetOrigin">原始</Button>
+                <Button Style="{StaticResource button-group-last}" Click="Fit2Height">整页</Button>
+            </StackPanel>
+        </Border>
+
+        <Border Background="#d3d3d3" Grid.Row="1">
+            <mpp:MoonPdfPanel x:Name="moonPdfPanel" Background="LightGray" ViewType="SinglePage" PageRowDisplay="ContinuousPageRows" PageMargin="0,2,4,2" AllowDrop="True"/>
+        </Border>
+    </Grid>
+</UserControl>

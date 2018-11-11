@@ -1,0 +1,86 @@
+﻿<sw:SchedulerWindow x:Class="Com.ChinaSoft.Scheduler.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:sw="clr-namespace:Com.ChinaSoft.Model.WpfSys;assembly=Com.ChinaSoft.Model"
+        Title="调度程序" Height="1024" Width="1280" ResizeMode="NoResize" WindowStartupLocation="Manual" Left="0" Top="0" WindowStyle="None" Background="#FF3C3C3C">
+
+    <sw:SchedulerWindow.Resources>
+        <!--<Style TargetType="Button">
+            <Setter Property="Height" Value="30"></Setter>
+            <Setter Property="Width" Value="120"></Setter>
+            <Setter Property="Margin" Value="15"></Setter>
+        </Style>-->
+
+        <Style TargetType="Button" x:Key="ButtonHeader">
+            <Setter Property="BorderThickness" Value="0"></Setter>
+            <Setter Property="Width" Value="1280"></Setter>
+            <Setter Property="Height" Value="252"></Setter>
+        </Style>
+
+        <Style TargetType="StackPanel" x:Key="StackPanelMenu">
+            <Setter Property="Background" Value="#656566"></Setter>
+            <Setter Property="Width" Value="130"></Setter>
+            <Setter Property="Height" Value="770"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+            <Setter Property="VerticalAlignment" Value="Bottom"></Setter>
+            <Setter Property="Margin" Value="-130,0,0,0"></Setter>
+            <Setter Property="ZIndex" Value="1"></Setter>
+            <Setter Property="Visibility" Value="Collapsed"></Setter>
+        </Style>
+
+        <Style TargetType="Button" x:Key="ButtonExeItem">
+            <Setter Property="BorderThickness" Value="0"></Setter>
+            <Setter Property="Background" Value="Transparent"></Setter>
+            <Setter Property="Margin" Value="10,30,0,0"></Setter>
+            <Setter Property="Foreground" Value="#FFFFFF"></Setter>
+            <Setter Property="FontSize" Value="16"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <StackPanel Orientation="Horizontal">
+                            <!--<TextBlock Text="口"></TextBlock>-->
+                            <Rectangle Width="15" Height="20" Margin="0,0,10,0" StrokeThickness="1" Stroke="#FFFFFF"></Rectangle>
+                            <TextBlock Text="{TemplateBinding Content}" ></TextBlock>
+                        </StackPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Storyboard x:Key="MenuIn">
+            <ThicknessAnimation Duration="0:0:.75" Storyboard.TargetProperty="Margin" From="-130,0,130,0" To="0" DecelerationRatio=".9" />
+            <DoubleAnimation Duration="0:0:.5" Storyboard.TargetProperty="Opacity" From="0" To="1" />
+        </Storyboard>
+
+        <Storyboard x:Key="MenuOut">
+            <ThicknessAnimation Duration="0:0:.75" Storyboard.TargetProperty="Margin" To="-130,0,130,0" AccelerationRatio=".9"/>
+            <DoubleAnimation Duration="0:0:.5" Storyboard.TargetProperty="Opacity" To="0.5" />
+        </Storyboard>
+    </sw:SchedulerWindow.Resources>
+    <Grid>
+        <DockPanel>
+            <Button Style="{StaticResource ButtonHeader}" DockPanel.Dock="Top" Tag="Com.ChinaSoft.MenuPanel" Button.Click="OpenChild">
+                <!--<Button Tag="Com.ChinaSoft.Devinfo">一机一档</Button>
+                <Button Tag="Com.ChinaSoft.WorkOrder">工单执行</Button>
+                <Button Tag="Com.ChinaSoft.AlertCenter">预警中心</Button>-->
+                <Image Source="Images/Header.png"></Image>
+            </Button>
+            <StackPanel DockPanel.Dock="Bottom" Name="panel"></StackPanel>
+        </DockPanel>
+        
+        <!--已经设置为隐藏-->
+        <StackPanel Style="{StaticResource StackPanelMenu}" Name="PanelMenu" Button.Click="OpenChild">
+            <Button Style="{StaticResource ButtonExeItem}" Content="信  息" />
+            <Button Style="{StaticResource ButtonExeItem}" Content="常用设置" />
+            <Button Style="{StaticResource ButtonExeItem}" Content="生  产" />
+            <Button Style="{StaticResource ButtonExeItem}" Content="质  量" />
+            <Button Style="{StaticResource ButtonExeItem}" Content="设  置" />
+            <Button Style="{StaticResource ButtonExeItem}" Tag="Com.ChinaSoft.Devinfo" Content="一机一档" />
+            <Button Style="{StaticResource ButtonExeItem}" Tag="Com.ChinaSoft.AlertCenter" Content="设备预警" />
+            <Button Style="{StaticResource ButtonExeItem}" Tag="Com.ChinaSoft.WorkOrder" Content="工单执行" />
+            <Button Style="{StaticResource ButtonExeItem}" Tag="Com.ChinaSoft.Scheduler" Content="远程协助" />
+            <Button Style="{StaticResource ButtonExeItem}" Content="状态诊断" />
+        </StackPanel>
+    </Grid>
+</sw:SchedulerWindow>
+

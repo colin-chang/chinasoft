@@ -1,0 +1,24 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Com.ChinaSoft.Resource;Component/Style/CommonDict.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/Com.ChinaSoft.Resource;Component/Style/DataGridDict.xaml"></ResourceDictionary>
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style TargetType="DataGrid" BasedOn="{StaticResource baseDataGrid}">
+        <Setter Property="Background" Value="#282A36"></Setter>
+        <Setter Property="RowBackground" Value="#282A36"></Setter>
+        <Setter Property="RowHeight" Value="40"></Setter>
+        <Setter Property="GridLinesVisibility" Value="All"></Setter>
+        <Setter Property="VerticalGridLinesBrush" Value="#404353"></Setter>
+        <Setter Property="SelectionUnit" Value="Cell"></Setter>
+        <Setter Property="CanUserSortColumns" Value="False"></Setter>
+    </Style>
+    <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource baseColumnHeader}">
+        <Setter Property="Background" Value="#333646"></Setter>
+        <Setter Property="Height" Value="40"></Setter>
+        <Setter Property="BorderThickness" Value="0 0 1 0"></Setter>
+        <Setter Property="BorderBrush" Value="#404353"></Setter>
+    </Style>
+</ResourceDictionary>

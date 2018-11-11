@@ -1,0 +1,159 @@
+﻿<UserControl x:Class="Com.ChinaSoft.Sercenter.Views.QuestionDetailUc"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Com.ChinaSoft.Sercenter.Views"
+             xmlns:star="clr-namespace:Com.ChinaSoft.UserControls.StarRatingControl;assembly=Com.ChinaSoft.UserControls"
+             mc:Ignorable="d"
+             d:DesignHeight="500" d:DesignWidth="650" x:ClassModifier="internal">
+    <UserControl.Resources>
+        <ResourceDictionary Source="/Resources/Style/QuestionDict.xaml" />
+    </UserControl.Resources>
+
+    <DockPanel>
+        <Border DockPanel.Dock="Top" Style="{StaticResource HeadContainer}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="问题详细信息" Style="{StaticResource BaseHeadTitle}" />
+                </StackPanel>
+                <Button Grid.Column="1" Style="{StaticResource BaseHeadClose}" Command="{Binding CloseWindowCommand}" />
+            </Grid>
+        </Border>
+        <Border DockPanel.Dock="Top" Style="{StaticResource ContentContainer}">
+            <Grid Name="GridContent" DataContext="{Binding RepairbillInfo}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="2*" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Style="{StaticResource TxtFormLabel}" Text="反馈烟厂" />
+                    <TextBlock Style="{StaticResource TxtFormValue}" Text="{Binding FactoryName}" Grid.Row="0"
+                               Grid.Column="1" />
+                    <TextBlock Style="{StaticResource TxtFormLabel}" Text="反馈人" Grid.Row="0" Grid.Column="2" />
+                    <TextBlock Style="{StaticResource TxtFormValue}" Text="{Binding RecardUserName}" Grid.Row="0"
+                               Grid.Column="3" />
+                    <TextBlock Style="{StaticResource TxtFormLabel}" Text="反馈时间" Grid.Row="0" Grid.Column="4" />
+                    <TextBlock Style="{StaticResource TxtFormValue}"
+                               Text="{Binding RecardDateStr, Converter={StaticResource TimeToFormatConverter}}"
+                               Grid.Row="0" Grid.Column="5" />
+
+                    <TextBlock Style="{StaticResource TxtFormLabel}" Text="问题种类" Grid.Row="1" Grid.Column="0" />
+                    <TextBlock Style="{StaticResource TxtFormValue}" Text="{Binding TypeName}" Grid.Row="1"
+                               Grid.Column="1" />
+                    <TextBlock Style="{StaticResource TxtFormLabel}" Text="标  题" Grid.Row="1" Grid.Column="2" />
+                    <TextBlock Style="{StaticResource TxtFormValue}" Text="{Binding Title}" Grid.Row="1"
+                               Grid.Column="3" Grid.ColumnSpan="3" />
+
+                    <TextBlock Style="{StaticResource TxtFormLabel}" Text="详细描述" Grid.Row="2" Grid.RowSpan="2"
+                               Grid.Column="0" />
+                    <TextBox Text="{Binding Content}" IsReadOnly="True" TextWrapping="Wrap" Grid.Row="2"
+                             Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="5" />
+                </Grid>
+                <Grid Name="ServiceRow" Margin="0,10,0,0" Visibility="Collapsed">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="2*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Style="{StaticResource TxtFormLabel}" Text="客服人员" />
+                    <TextBlock Style="{StaticResource TxtFormValue}" Text="{Binding ServiceUser}" Grid.Row="0"
+                               Grid.Column="1" />
+                    <TextBlock Style="{StaticResource TxtFormLabel}" Text="受理时间" Grid.Row="0" Grid.Column="2" />
+                    <TextBlock Style="{StaticResource TxtFormValue}"
+                               Text="{Binding ServiceAcceptTimeStr, Converter={StaticResource TimeToFormatConverter}}"
+                               Grid.Row="0" Grid.Column="3" />
+                    <TextBlock Style="{StaticResource TxtFormLabel}" Text="转交时间" Grid.Row="0" Grid.Column="4" />
+                    <TextBlock Style="{StaticResource TxtFormValue}"
+                               Text="{Binding ServiceDeliverTimeStr, Converter={StaticResource TimeToFormatConverter}}"
+                               Grid.Row="0" Grid.Column="5" />
+
+                    <TextBlock Style="{StaticResource TxtFormLabel}" Text="烟机专家" Grid.Row="1" Grid.Column="0" />
+                    <TextBlock Style="{StaticResource TxtFormValue}" Text="{Binding ExpertUser}" Grid.Row="1"
+                               Grid.Column="1" />
+                    <TextBlock Style="{StaticResource TxtFormLabel}" Text="受理时间" Grid.Row="1" Grid.Column="2" />
+                    <TextBlock Style="{StaticResource TxtFormValue}"
+                               Text="{Binding ExpertAcceptTimeStr, Converter={StaticResource TimeToFormatConverter}}"
+                               Grid.Row="1" Grid.Column="3" />
+                    <TextBlock Style="{StaticResource TxtFormLabel}" Text="解决时间" Grid.Row="1" Grid.Column="4" />
+                    <TextBlock Style="{StaticResource TxtFormValue}"
+                               Text="{Binding ExpertSolveTimeStr, Converter={StaticResource TimeToFormatConverter}}"
+                               Grid.Row="1" Grid.Column="5" />
+                </Grid>
+                <Grid Name="ExpertRow" Visibility="Collapsed" Margin="0,10,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Style="{StaticResource TxtFormLabel}" Text="专家解决问题能力" VerticalAlignment="Bottom"
+                                   Grid.Row="0" Grid.Column="0" />
+                        <star:Rating Name="Rating1" Value="{Binding AppraisePoint1,Mode=TwoWay}" Maximum="5"
+                                     RatingChanged="Rating_OnRatingChanged" Grid.Row="0" Grid.Column="1" />
+
+                        <TextBlock Style="{StaticResource TxtFormLabel}" Text="专家解决问题态度" VerticalAlignment="Bottom"
+                                   Grid.Row="1" Grid.Column="0" />
+                        <star:Rating Name="Rating2" Value="{Binding AppraisePoint2,Mode=TwoWay}" Maximum="5"
+                                     RatingChanged="Rating_OnRatingChanged" Grid.Row="1" Grid.Column="1" />
+
+                        <TextBlock Style="{StaticResource TxtFormLabel}" Text="客服支持服务态度" VerticalAlignment="Bottom"
+                                   Grid.Row="2" Grid.Column="0" />
+                        <star:Rating Name="Rating3" Value="{Binding AppraisePoint3,Mode=TwoWay}" Maximum="5"
+                                     RatingChanged="Rating_OnRatingChanged" Grid.Row="2" Grid.Column="1" />
+
+                    </Grid>
+                    <Grid Grid.Column="1" Margin="0,5,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="3*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="详细评价：" />
+                        <TextBox Grid.Row="1"
+                                 IsReadOnly="{Binding RelativeSource={RelativeSource AncestorLevel=1,AncestorType=Border},Path=DataContext.AppraiseContentIsReadOnly}"
+                                 Text="{Binding AppraiseContent}" TextWrapping="Wrap" AcceptsReturn="True" />
+                    </Grid>
+                </Grid>
+                <Button Name="SubmitRow"
+                        Visibility="{Binding RelativeSource={RelativeSource AncestorLevel=1,AncestorType=Border},Path=DataContext.SubmitButtonVisibility}"
+                        Content="提交" Style="{StaticResource Form-SubmitButton}"
+                        Height="25" Width="100" HorizontalAlignment="Right"
+                        Command="{Binding RelativeSource={RelativeSource AncestorLevel=1,AncestorType=Border},Path=DataContext.SubmitAppraiseCommand}"
+                        CommandParameter="{Binding}" />
+            </Grid>
+        </Border>
+    </DockPanel>
+</UserControl>

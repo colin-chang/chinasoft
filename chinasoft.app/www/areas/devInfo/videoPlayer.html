@@ -1,0 +1,18 @@
+<ion-view id="devInfoVideoPlayer" cache-view="false">
+    <ion-header-bar class="bar-dark">
+        <button class="button button-calm button-icon icon ion-ios-arrow-back" ng-click="goBack()"></button>
+        <h1 class="title">视频预览</h1>
+    </ion-header-bar>
+    <ion-content class="has-header has-subheader">
+        <videogular vg-theme="controller.config.theme">
+            <vg-media vg-src="controller.config.sources"
+                      vg-tracks="controller.config.tracks">
+            </vg-media>
+        </videogular>
+    </ion-content>
+</ion-view>
+
+<!--文件预览-->
+<!--<img src="http://115.28.209.159/files/devinfo/equipment/cover/v01.jpg" width="100%">-->
+<!--<video src="http://115.28.209.159/files/devinfo/equipment/techdoc/bwaz.mp4" autoplay controls style="width: 100%;"></video>-->
+<!--<iframe src="http://115.28.209.159/files/devinfo/equipment/techdoc/zl_html/index.html" style="width: 100%;border: 0;"></iframe>-->

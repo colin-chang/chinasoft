@@ -1,0 +1,19 @@
+<ion-view id="summaryHalt" cache-view="false">
+    <ion-header-bar class="bar-calm">
+        <button class="button button-calm button-icon icon ion-ios-arrow-back" ng-click="goBack()"></button>
+        <h1 class="title">停机时间统计</h1>
+    </ion-header-bar>
+    <ion-content class="has-header stable-bg">
+        <section class="light-bg padding-vertical">
+            <div id="pie" class="chart"></div>
+        </section>
+        <section class="margin-top">
+            <ion-list>
+                <ion-item>故障<span class="item-note">35分钟</span></ion-item>
+                <ion-item>待料 <span class="item-note">18分钟</span></ion-item>
+                <ion-item>换牌<span class="item-note">6分钟</span></ion-item>
+                <ion-item>换班<span class="item-note">2分钟</span></ion-item>
+            </ion-list>
+        </section>
+    </ion-content>
+</ion-view>

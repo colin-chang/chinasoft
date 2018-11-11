@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="Com.ChinaSoft.UserControls.Calendar.CalendarView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d"
+             d:DesignHeight="100" d:DesignWidth="200">
+
+    <UserControl.Resources>
+        <ResourceDictionary
+            Source="/Com.ChinaSoft.UserControls;Component/Calendar/MaterialDesignTheme.Calendar.xaml" />
+    </UserControl.Resources>
+    <materialDesign:DialogHost>
+        <TextBlock>
+            <Hyperlink Command="materialDesign:DialogHost.OpenDialogCommand"
+                       materialDesign:DialogHost.DialogOpenedAttached="CalendarDialogOpenedEventHandler"
+                       materialDesign:DialogHost.DialogClosingAttached="CalendarDialogClosingEventHandler">
+                <Run Name="ThisRun" Text="选择日期" Foreground="#EB8639" FontSize="15"></Run>
+                <Hyperlink.CommandParameter>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Calendar x:Name="ThisCalendar" Margin="-1 -4 -1 0" SelectedDatesChanged="ThisCalendar_OnSelectedDatesChanged" />
+                        <StackPanel Grid.Row="1" Margin="8" HorizontalAlignment="Right"
+                                    Orientation="Horizontal">
+                            <Button Name="ButtonOk"
+                                    Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                                    CommandParameter="1"
+                                    Cursor="Hand"
+                                    PreviewTouchDown="Button_OnPreviewTouchDown"
+                                    Style="{DynamicResource MaterialDesignFlatButton}">
+                                确认
+                            </Button>
+                            <Button Name="ButtonCancel"
+                                    Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                                    CommandParameter="0"
+                                    Cursor="Hand"
+                                    PreviewTouchDown="Button_OnPreviewTouchDown"
+                                    Style="{DynamicResource MaterialDesignFlatButton}">
+                                取消
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+                </Hyperlink.CommandParameter>
+            </Hyperlink>
+        </TextBlock>
+    </materialDesign:DialogHost>
+</UserControl>

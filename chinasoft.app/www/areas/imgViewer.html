@@ -1,0 +1,11 @@
+<ion-view id="imgViewer" cache-view="false">
+    <ion-header-bar class="bar-calm">
+        <div class="buttons">
+            <button class="button button-calm button-icon icon ion-ios-arrow-back" ng-click="goBack()"></button>
+        </div>
+        <h1 class="title">{{title}}</h1>
+    </ion-header-bar>
+    <ion-content class="has-header dark-bg" scroll="false">
+        <img class="img-model" ng-src="{{path}}" ng-show="loaded">
+    </ion-content>
+</ion-view>

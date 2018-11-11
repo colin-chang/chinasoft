@@ -1,0 +1,33 @@
+<ion-view id="summaryDetail" cache-view="false">
+    <ion-header-bar class="bar-calm">
+        <button class="button button-calm button-icon icon ion-ios-arrow-back" ui-sref="summary.list"></button>
+        <h1 class="title">班报内容</h1>
+    </ion-header-bar>
+    <ion-content class="has-header padding-vertical">
+        <ion-list>
+            <ion-item>日期<span class="item-note">{{data.recordDateStr}}</span></ion-item>
+            <ion-item>班次<span class="item-note">{{data.shiftName}}</span></ion-item>
+            <ion-item>操作工<span class="item-note">{{data.operWorker}}</span></ion-item>
+            <ion-item>工作班开始<span class="item-note">{{data.startTimeStr}}</span></ion-item>
+            <ion-item>工作班结束<span class="item-note">{{data.endTimeStr}}</span></ion-item>
+            <ion-item>生产总量<span class="item-note">{{data.totalQlt}}</span></ion-item>
+            <ion-item>生产效率<span class="item-note">{{data.pdtEff}}%</span></ion-item>
+            <ion-item>运行时间<span class="item-note">{{data.runTimes}}分钟</span></ion-item>
+            <ion-item>停机时间<span class="item-note">{{data.stopTimes}}分钟<i class="iconfont icon-slice34 calm"
+                                                                         ui-sref="sub-summary.halt({id:'123'})"></i></span>
+            </ion-item>
+            <ion-item>设备利用率<span class="item-note">{{data.utilRate}}%</span></ion-item>
+            <ion-item>废烟量<span class="item-note">{{data.rejectCount}}</span></ion-item>
+            <ion-item>废烟剔除率<span class="item-note">{{data.rejectRate}}%</span></ion-item>
+            <ion-item>MAX废烟量<span class="item-note">{{data.maxRejectCount}}</span></ion-item>
+            <ion-item>MAX废烟率<span class="item-note">{{data.maxrjectRate}}%</span></ion-item>
+            <ion-item>报警次数<span class="item-note">{{data.alertCount}}次<i class="iconfont icon-slice34 assertive"
+                                                                         ui-sref="sub-summary.warning({id:'123'})"></i></span>
+            </ion-item>
+            <ion-item class="item-divider">今日工单</ion-item>
+            <ion-item>工单名称<span class="item-note">压脚TECA000</span></ion-item>
+            <ion-item>备件图号<span class="item-note">TECA000</span></ion-item>
+            <ion-item>材质<span class="item-note">不锈钢</span></ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,12 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!--寿命预警详细信息-->
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="FaultDetailDict.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style TargetType="StackPanel" x:Key="Panel-Right">
+        <Setter Property="Margin" Value="30,20,0,0" />
+    </Style>
+</ResourceDictionary>

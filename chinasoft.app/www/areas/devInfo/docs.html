@@ -1,0 +1,23 @@
+<ion-view id="devInfoDocs" cache-view="false">
+    <ion-header-bar class="bar-calm">
+        <button class="button button-calm button-icon icon ion-ios-arrow-back" ui-sref="indexTab.devInfo"></button>
+        <h1 class="title">随机文档</h1>
+    </ion-header-bar>
+    <ion-content class="has-header padding-top">
+        <div class="card">
+            <div class="item item-divider">
+                我的文档
+            </div>
+        </div>
+        <section class="section-menu dark">
+            <div class="row" ng-repeat="group in docGroups">
+                <div class="col" ng-repeat="doc in group" ng-click="openFile(doc)">
+                    <i ng-if="!!doc.iconClass" class="iconfont {{doc.iconClass}}"></i>
+                    {{doc.shortName}}
+                </div>
+            </div>
+        </section>
+        <ion-infinite-scroll ng-if="canLoadMore" on-infinite="loadMore()">
+        </ion-infinite-scroll>
+    </ion-content>
+</ion-view>

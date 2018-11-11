@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="Com.ChinaSoft.Devinfo.UserControls.ImageViewer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:ucs="clr-namespace:Com.ChinaSoft.UserControls;assembly=Com.ChinaSoft.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="700">
+    <UserControl.Resources>
+        <ResourceDictionary Source="/Com.ChinaSoft.Resource;Component/Style/CommonDict.xaml"></ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid>
+        <!--<Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>-->
+        <!--<Border Background="#f0f0f0">
+            <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" Margin="15 0 0 0">
+                <Button Style="{StaticResource button-group-first}" Click="ZoomIn">放大</Button>
+                <Button Style="{StaticResource button-group-item}" Click="ZoomOut">缩小</Button>
+                <Button Style="{StaticResource button-group-last}" Click="ResetOrigin">原始</Button>
+            </StackPanel>
+        </Border>-->
+        <Grid x:Name="container" ClipToBounds="True" Background="#d3d3d3"
+                ManipulationStarting="image_ManipulationStarting"  
+                ManipulationDelta="image_ManipulationDelta"
+                ManipulationInertiaStarting="image_ManipulationInertiaStarting"
+                ManipulationCompleted="image_ManipulationCompleted">
+            <!--<Image x:Name="img" RenderTransformOrigin="0.5 0.5" 
+                   MouseWheel="Image_MouseWheel" 
+                   MouseLeftButtonDown="Image_MouseLeftButtonDown" 
+                   MouseMove="Image_MouseMove"
+                   IsManipulationEnabled="True">-->
+            <Image x:Name="img" IsManipulationEnabled="True">
+                <Image.RenderTransform>
+                    <!--<TransformGroup>
+                        <TranslateTransform x:Name="translate" />
+                        <ScaleTransform x:Name="scale" />
+                    </TransformGroup>-->
+                    <MatrixTransform></MatrixTransform>
+                </Image.RenderTransform>
+            </Image>
+            <ucs:ProgressRing x:Name="ring"></ucs:ProgressRing>
+        </Grid>
+    </Grid>
+</UserControl>

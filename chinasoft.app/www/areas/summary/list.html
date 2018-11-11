@@ -1,0 +1,26 @@
+<ion-view id="summaryList" view-title="班报统计" cache-view="false">
+    <header class="bar bar-subheader">
+        <div class="button-bar">
+            <button class="button button-clear button-positive" ng-click="siblingDay(false)">上一天</button>
+            <button class="button button-clear button-positive" ng-click="siblingDay(true)">下一天</button>
+        </div>
+    </header>
+    <ion-content class="has-header has-subheader">
+        <ion-list>
+            <ion-item ng-repeat="order in orders" ui-sref="sub-summary.detail({id:order.id})">
+                <div class="row">
+                    <div class="col-50"><span>班次：</span>{{order.shiftName}}</div>
+                    <div class="col-50"><span>运行时间：</span>{{order.runTimes}}分钟</div>
+                </div>
+                <div class="row">
+                    <div class="col-50"><span>产量：</span>{{order.totalQlt}}万支</div>
+                    <div class="col-50"><span>废烟量：</span>{{order.rejectCount}} 支</div>
+                </div>
+                <div class="row">
+                    <div class="col-50"><b class="balanced-bg light padding-horizontal">开始</b>{{order.startTimeStr.split(' ').pop()}}</div>
+                    <div class="col-50"><b class="energized-bg light padding-horizontal">结束</b> {{order.endTimeStr.split(' ').pop()}}</div>
+                </div>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

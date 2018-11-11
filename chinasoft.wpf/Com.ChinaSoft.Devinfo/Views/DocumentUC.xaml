@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="Com.ChinaSoft.Devinfo.Views.DocumentUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:uc="clr-namespace:Com.ChinaSoft.Devinfo.UserControls"
+             xmlns:ucs="clr-namespace:Com.ChinaSoft.UserControls;assembly=Com.ChinaSoft.UserControls"
+             xmlns:b="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             mc:Ignorable="d" 
+             d:DesignHeight="746" d:DesignWidth="1280" Background="#252733">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Style/Document/DocumentDict.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="/Resources/ControlTemplate/Document/Document.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Border Style="{StaticResource hr}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource text-header}" Text="{Binding EquipmentName}" HorizontalAlignment="Left"></TextBlock>
+                    <TextBlock Style="{StaticResource text-header}" Text=" / 随机文档" HorizontalAlignment="Left"></TextBlock>
+                </StackPanel>
+                <Button Grid.Column="1" Style="{StaticResource button-goback}" Command="{Binding GoBackCommand}" CommandParameter="{Binding ElementName=ring}">
+                    <b:EventTrigger EventName="TouchDown">
+                        <b:InvokeCommandAction Command="{Binding GoBackCommand}" CommandParameter="{Binding ElementName=ring}" />
+                    </b:EventTrigger>
+                </Button>
+            </Grid>
+        </Border>
+        <Grid Grid.Row="1">
+            <uc:PdfViewer Style="{StaticResource pdf}" x:Name="pdfViewer" />
+            <DocumentViewer Style="{StaticResource word}" x:Name="wordViewer" />
+            <uc:ImageViewer Style="{StaticResource photo}" x:Name="photoViewer" />
+            <WebBrowser Style="{StaticResource html}" Name="htmlViewer" />
+
+            <ScrollViewer Style="{StaticResource fileList}" ScrollChanged="ScrollViewer_ScrollChanged">
+                <WrapPanel DataContext="{Binding Documents,NotifyOnTargetUpdated=True}" Binding.TargetUpdated="DocumentsUpdated" Button.Click="PreviewFile">
+                </WrapPanel>
+            </ScrollViewer>
+            <ucs:ProgressRing x:Name="ring"></ucs:ProgressRing>
+        </Grid>
+    </Grid>
+</UserControl>
+
+
+
+
+
+
+

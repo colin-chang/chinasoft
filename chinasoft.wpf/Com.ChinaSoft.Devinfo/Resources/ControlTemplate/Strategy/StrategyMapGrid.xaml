@@ -1,0 +1,62 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:cvt="clr-namespace:Com.ChinaSoft.Devinfo.Expands.Converter">
+
+    <Style TargetType="Border" x:Key="border-cell">
+        <Setter Property="Padding" Value="3"></Setter>
+    </Style>
+    <Style TargetType="StackPanel" x:Key="panel-map">
+        <Setter Property="Orientation" Value="Horizontal"></Setter>
+        <Setter Property="Height" Value="32"></Setter>
+        <Setter Property="Background" Value="#6C628A"></Setter>
+    </Style>
+    <Style TargetType="Border" x:Key="border-mark">
+        <Setter Property="Background" Value="#9B88C4"></Setter>
+        <Setter Property="Width" Value="45"></Setter>
+    </Style>
+    <Style TargetType="Image" x:Key="img-mark">
+        <Setter Property="Source" Value="/Images/Strategy/mark.png"></Setter>
+        <Setter Property="Height" Value="20"></Setter>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="txt-number">
+        <Setter Property="TextAlignment" Value="Right"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="Width" Value="80"></Setter>
+        <Setter Property="FontSize" Value="15"></Setter>
+    </Style>
+
+    <Style TargetType="DataGridCell">
+        <Style.Resources>
+            <cvt:StrategyMapVisibilityConverter x:Key="mvc"></cvt:StrategyMapVisibilityConverter>
+            <cvt:StrategyMapPartVisibilityConverter x:Key="mpvc"></cvt:StrategyMapPartVisibilityConverter>
+            <cvt:StrategyMapPartAlignConverter x:Key="mpac"></cvt:StrategyMapPartAlignConverter>
+        </Style.Resources>
+        <Setter Property="Foreground" Value="#fff"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="DataGridCell">
+                    <Border Style="{StaticResource border-cell}" >
+                        <Grid>
+                            <StackPanel Style="{StaticResource panel-map}"
+                                        Visibility="{Binding ElementName=cp,Path=Content.Text,Converter={StaticResource mvc}}" Name="panel">
+                                <Border Style="{StaticResource border-mark}" Name="bd">
+                                    <Image Style="{StaticResource img-mark}"></Image>
+                                </Border>
+                            </StackPanel>
+                            <Border Visibility="{Binding ElementName=cp,Path=Content.Text,Converter={StaticResource mpvc}}" Padding="10 0" Background="Transparent">
+                                <ContentPresenter HorizontalAlignment="{Binding RelativeSource={x:Static RelativeSource.Self},Path=Content.Text,Converter={StaticResource mpac}}" VerticalAlignment="Center" Name="cp" />
+                            </Border>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="panel" Property="Background" Value="#1D93B6"></Setter>
+                            <Setter TargetName="bd" Property="Background" Value="#20B7E2"></Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

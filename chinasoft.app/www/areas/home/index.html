@@ -1,0 +1,137 @@
+<ion-view id="home" view-title="ZJ119-001" cache-view="false">
+    <ion-nav-buttons side="right">
+        <a class="button button-icon icon ion-gear-a"></a>
+    </ion-nav-buttons>
+    <ion-content class="has-header content-banner">
+        <img class="img-banner">
+    </ion-content>
+
+    <section class="section-equinfo has-header">
+        <ion-tabs class="tabs-light tabs-top tabs-home">
+            <ion-tab title="当前信息">
+                <ion-scroll>
+                    <table class="table">
+                        <tr>
+                            <td>机器速度</td>
+                            <td>{{order.speed}}</td>
+                        </tr>
+                        <tr>
+                            <td>产量</td>
+                            <td>{{order.output}}</td>
+                        </tr>
+                        <tr>
+                            <td>废品率</td>
+                            <td>{{order.rejectRate}}</td>
+                        </tr>
+                        <tr>
+                            <td>烟支圆周</td>
+                            <td>{{order.circle}}</td>
+                        </tr>
+                        <tr>
+                            <td>标准偏差</td>
+                            <td>{{order.stdOffset}}</td>
+                        </tr>
+                        <tr>
+                            <td>烟丝消耗</td>
+                            <td>{{order.picaConsume}}</td>
+                        </tr>
+                        <tr>
+                            <td>老铁温度</td>
+                            <td>{{order.ironTemp}}</td>
+                        </tr>
+                        <tr>
+                            <td>水松纸温度</td>
+                            <td>{{order.paperTemp}}</td>
+                        </tr>
+                        <tr>
+                            <td>当前工单</td>
+                            <td>{{order.workOrderShortNo}}</td>
+                        </tr>
+                        <tr>
+                            <td>生产牌号</td>
+                            <td>{{order.workOrderGrade}}</td>
+                        </tr>
+                    </table>
+                </ion-scroll>
+            </ion-tab>
+            <ion-tab title="资产信息">
+                <ion-scroll>
+                    <table class="table">
+                        <tr>
+                            <td>生产单位</td>
+                            <td>{{equ.factoryName}}</td>
+                        </tr>
+                        <tr>
+                            <td>设备型号</td>
+                            <td>{{equ.equipmentName}}</td>
+                        </tr>
+                        <tr>
+                            <td>理论寿命</td>
+                            <td>{{equ.age}}</td>
+                        </tr>
+                        <tr>
+                            <td>总废品率</td>
+                            <td>{{equ.equipmentros}}</td>
+                        </tr>
+                        <tr>
+                            <td>含末率</td>
+                            <td>{{equ.equipmentdcr}}</td>
+                        </tr>
+                        <tr>
+                            <td>有效作业率</td>
+                            <td>{{equ.equipmenteor}}</td>
+                        </tr>
+                        <tr>
+                            <td>烟值长度</td>
+                            <td>{{equ.length}}</td>
+                        </tr>
+                        <tr>
+                            <td>过嘴长度</td>
+                            <td>{{equ.filterLength1}}</td>
+                        </tr>
+                        <tr>
+                            <td>烟只直径</td>
+                            <td>{{equ.diameter}}</td>
+                        </tr>
+                        <tr>
+                            <td>出厂日期</td>
+                            <td>{{equ.outdate}}</td>
+                        </tr>
+                        <tr>
+                            <td>采购日期</td>
+                            <td>{{equ.purchaseDate}}</td>
+                        </tr>
+                        <tr>
+                            <td>投产日期</td>
+                            <td>{{equ.usedDate}}</td>
+                        </tr>
+                        <tr>
+                            <td>综合噪声</td>
+                            <td>{{equ.syntheticNoise}}</td>
+                        </tr>
+                        <tr>
+                            <td>单点噪声</td>
+                            <td>{{equ.singleNoise}}</td>
+                        </tr>
+                        <tr>
+                            <td>额定生产速度</td>
+                            <td>{{equ.ratedSpeed}}</td>
+                        </tr>
+                        <tr>
+                            <td>最大生产速度</td>
+                            <td>{{equ.maxSpeed}}</td>
+                        </tr>
+                        <tr>
+                            <td>额定烟条速度</td>
+                            <td>{{equ.cigarRatedspeed}}</td>
+                        </tr>
+                        <tr>
+                            <td>最大烟条速度</td>
+                            <td>{{equ.cigarMaxSpeed}}</td>
+                        </tr>
+                    </table>
+                </ion-scroll>
+            </ion-tab>
+        </ion-tabs>
+    </section>
+</ion-view>

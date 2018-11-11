@@ -1,0 +1,106 @@
+﻿<local:KnowledgeUC x:Class="Com.ChinaSoft.Devinfo.Views.ExperienceBaseSearchedUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:cvt="clr-namespace:Com.ChinaSoft.Devinfo.Expands.Converter"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+             xmlns:b="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:local="clr-namespace:Com.ChinaSoft.Devinfo.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="746" d:DesignWidth="1280">
+    <local:KnowledgeUC.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Style/Knowledge/ExperienceBaseSearchedDict.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </local:KnowledgeUC.Resources>
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Border Style="{StaticResource hr}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource text-header}" Text="{Binding Root.Name}" HorizontalAlignment="Left"></TextBlock>
+                    <TextBlock Style="{StaticResource text-header}" Text=" / 专家经验库" HorizontalAlignment="Left"></TextBlock>
+                </StackPanel>
+                <Button Grid.Column="1" Style="{StaticResource button-goback}" Command="{Binding GoBackCommand}">
+                    <b:EventTrigger EventName="TouchDown">
+                        <b:InvokeCommandAction Command="{Binding GoBackCommand}" />
+                    </b:EventTrigger>
+                </Button>
+            </Grid>
+        </Border>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <!--<StackPanel Orientation="Horizontal" x:Name="toolbar">
+                <Button Style="{StaticResource button-group-first}" Click="ZoomIn">放大</Button>
+                <Button Style="{StaticResource button-group-item}" Click="ResetOrigin">原始</Button>
+                <Button Style="{StaticResource button-group-last}" Click="ZoomOut">缩小</Button>
+            </StackPanel>-->
+            <StackPanel Grid.Column="1" Style="{StaticResource panel-parameters}">
+                <TextBlock Style="{StaticResource text-parameters}">部位/图号：</TextBlock>
+                <TextBlock Style="{StaticResource text-parameters}" Margin="0 0 20 0" Text="{Binding Part}"></TextBlock>
+                <TextBlock Style="{StaticResource text-parameters}">故障码/现象：</TextBlock>
+                <TextBlock Style="{StaticResource text-parameters}" Text="{Binding Failure}"></TextBlock>
+            </StackPanel>
+        </Grid>
+
+        <!--缩放拖拽同时作用（拖拽后缩放失效）-->
+        <!--<Grid Grid.Row="2" ClipToBounds="True">
+            <Grid RenderTransformOrigin="0.5 0.5" Name="container" Background="Transparent">
+                <i:Interaction.Behaviors>
+                    <ei:MouseDragElementBehavior />
+                </i:Interaction.Behaviors>
+                <Canvas Name="canvas" Background="Transparent" Loaded="Canvas_Loaded">
+                    <TextBlock Style="{StaticResource text-noresult}" Name="txtNoResult">没有任何符合条件的搜索结果</TextBlock>
+                </Canvas>
+            </Grid>
+        </Grid>-->
+        
+        <!--<Grid Grid.Row="2" ClipToBounds="True">
+            <Grid  x:Name="container" ClipToBounds="True" Background="Transparent">
+                <Canvas Name="canvas" Background="Transparent" Loaded="Canvas_Loaded" 
+                        RenderTransformOrigin="0.5 0.5"
+                        MouseWheel="Canvas_MouseWheel" 
+                        MouseLeftButtonDown="Canvas_MouseLeftButtonDown" 
+                        MouseMove="Canvas_MouseMove">
+                    <Canvas.RenderTransform>
+                        <TransformGroup>
+                            <TranslateTransform x:Name="translate" />
+                            <ScaleTransform x:Name="scale" />
+                        </TransformGroup>
+                    </Canvas.RenderTransform>
+                    <TextBlock Style="{StaticResource text-noresult}" Name="txtNoResult">没有任何符合条件的搜索结果</TextBlock>
+                </Canvas>
+            </Grid>
+        </Grid>-->
+
+        <Grid Grid.Row="2" ClipToBounds="True">
+            <Grid  x:Name="container" ClipToBounds="True" Background="Transparent" 
+                ManipulationStarting="canvas_ManipulationStarting"
+                ManipulationDelta="canvas_ManipulationDelta"
+                ManipulationInertiaStarting="canvas_ManipulationInertiaStarting"
+                ManipulationCompleted="canvas_ManipulationCompleted">
+                <Canvas Name="canvas" Background="Transparent" Loaded="Canvas_Loaded" IsManipulationEnabled="True">
+                    <Canvas.RenderTransform>
+                        <MatrixTransform></MatrixTransform>
+                    </Canvas.RenderTransform>
+                    <TextBlock Style="{StaticResource text-noresult}" Name="txtNoResult">没有任何符合条件的搜索结果</TextBlock>
+                </Canvas>
+            </Grid>
+        </Grid>
+    </Grid>
+</local:KnowledgeUC>

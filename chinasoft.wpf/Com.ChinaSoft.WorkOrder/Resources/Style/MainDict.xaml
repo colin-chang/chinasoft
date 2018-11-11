@@ -1,0 +1,89 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Com.ChinaSoft.Resource;Component/Style/CommonDict.xaml" />
+        <ResourceDictionary Source="/Com.ChinaSoft.Resource;Component/Style/CustomTableDict.xaml" />
+        <ResourceDictionary Source="/Com.ChinaSoft.Resource;Component/Style/DataGridDict.xaml" />
+        <ResourceDictionary Source="/Com.ChinaSoft.Resource;Component/Style/ButtonBaseStyle.xaml" />
+        <ResourceDictionary Source="/Resources/ControlTemplate/Main/TabControlTemplate.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style TargetType="Border" x:Key="Border-Parameter">
+        <Setter Property="Padding" Value="25" />
+        <Setter Property="Background" Value="#3C3E57" />
+        <Setter Property="Margin" Value="0 0 10 15" />
+        <Setter Property="CornerRadius" Value="8" />
+    </Style>
+    <Style TargetType="StackPanel" x:Key="Stk-Parameter">
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+    <Style TargetType="TextBlock" x:Key="Txt-Parameter-Name" BasedOn="{StaticResource darkWhite}">
+        <Setter Property="FontSize" Value="16" />
+    </Style>
+    <Style TargetType="StackPanel" x:Key="Stk-Parameter-Content">
+        <Setter Property="Orientation" Value="Horizontal" />
+        <Setter Property="Margin" Value="0 10 0 0" />
+    </Style>
+    <Style TargetType="TextBlock" x:Key="Txt-Parameter-Value">
+        <Setter Property="FontSize" Value="35" />
+        <Setter Property="VerticalAlignment" Value="Bottom" />
+        <Setter Property="Foreground" Value="#00B9AB" />
+        <Setter Property="FontWeight" Value="Bold" />
+    </Style>
+    <Style TargetType="TextBlock" x:Key="Txt-Parameter-Unit" BasedOn="{StaticResource lightWhite}">
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="VerticalAlignment" Value="Bottom" />
+        <Setter Property="Margin" Value="5 0 0 8" />
+    </Style>
+
+    <!--仪表盘-->
+    <Style TargetType="Grid" x:Key="Dashboard">
+        <Setter Property="Background">
+            <Setter.Value>
+                <ImageBrush ImageSource="/Images/Main/dashboard.png" Stretch="Uniform" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--仪表盘：指针-->
+    <Style TargetType="Image" x:Key="Img-Pointer">
+        <Setter Property="Source" Value="/Images/Main/pointer.png" />
+        <Setter Property="Width" Value="130" />
+        <Setter Property="VerticalAlignment" Value="Bottom" />
+        <Setter Property="Margin" Value="60 0 0 10" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="RenderTransformOrigin" Value="0.94,0.5" />
+    </Style>
+
+    <Style TargetType="TextBlock" x:Key="Dashboard-Number">
+        <Setter Property="Foreground" Value="#CFCFD1" />
+        <Setter Property="FontSize" Value="16" />
+    </Style>
+
+    <Style TargetType="Button" x:Key="ButtonOperation" BasedOn="{StaticResource ButtonBaseStyle}">
+        <Setter Property="Width" Value="160" />
+        <Setter Property="Height" Value="60" />
+        <Setter Property="FontSize" Value="18" />
+    </Style>
+
+    <!--自定义DataGrid-->
+    <Style TargetType="DataGrid" BasedOn="{StaticResource baseDataGrid}">
+        <Setter Property="Background" Value="#282A36" />
+        <Setter Property="RowBackground" Value="#282A36" />
+    </Style>
+    <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource baseColumnHeader}">
+        <Setter Property="Background" Value="#3F4257" />
+    </Style>
+
+    <Style TargetType="TextBlock" x:Key="Txt-Dashboard-Label">
+        <Setter Property="Foreground" Value="#8589A5" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="FontSize" Value="14" />
+    </Style>
+    <Style TargetType="TextBlock" x:Key="Txt-Dashboard-Value" BasedOn="{StaticResource Txt-Dashboard-Label}">
+        <Setter Property="Foreground" Value="#00B5AA" />
+        <Setter Property="FontSize" Value="18" />
+    </Style>
+</ResourceDictionary>

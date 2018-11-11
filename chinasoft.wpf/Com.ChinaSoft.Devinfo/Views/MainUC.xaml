@@ -1,0 +1,228 @@
+﻿<UserControl x:Class="Com.ChinaSoft.Devinfo.Views.MainUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:v="clr-namespace:Com.ChinaSoft.Devinfo.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="746" d:DesignWidth="1280" Background="#252733">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Style/Main/MainDict.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid Style="{StaticResource mainGrid}" DataContext="{Binding OverView}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="220"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Border Style="{StaticResource item-header}">
+                <TextBlock Style="{StaticResource item-info-header}">生产单位</TextBlock>
+            </Border>
+            <Border Style="{StaticResource item}" Grid.Column="1">
+                <TextBlock Style="{StaticResource item-info-content}" Text="{Binding FactoryName}"></TextBlock>
+            </Border>
+            <Border Style="{StaticResource item-header}" Grid.Row="1">
+                <TextBlock Style="{StaticResource item-info-header}" >设备型号</TextBlock>
+            </Border>
+            <Border Style="{StaticResource item}" Grid.Row="1" Grid.Column="1">
+                <TextBlock Style="{StaticResource item-info-content}" Text="{Binding EquipmentName}"></TextBlock>
+            </Border>
+            <Border Style="{StaticResource item-header}" Grid.Row="2">
+                <TextBlock Style="{StaticResource item-info-header}">理论寿命</TextBlock>
+            </Border>
+            <Border Style="{StaticResource item}" Grid.Row="2" Grid.Column="1">
+                <TextBlock Style="{StaticResource item-info-content}" Text="{Binding Age}"></TextBlock>
+            </Border>
+            <Border Style="{StaticResource item-header}" Grid.Row="3">
+                <TextBlock Style="{StaticResource item-info-header}">总废品率</TextBlock>
+            </Border>
+            <Border Style="{StaticResource item}"  Grid.Row="3" Grid.Column="1">
+                <TextBlock Style="{StaticResource item-info-content}" Text="{Binding Equipmentros}"></TextBlock>
+            </Border>
+            <Border Style="{StaticResource item-header}" Grid.Row="4">
+                <TextBlock Style="{StaticResource item-info-header}">含末率</TextBlock>
+            </Border>
+            <Border Style="{StaticResource item}"  Grid.Row="4" Grid.Column="1">
+                <TextBlock Style="{StaticResource item-info-content}" Text="{Binding Equipmentdcr}"></TextBlock>
+            </Border>
+            <Border Style="{StaticResource item-header}" Grid.Row="5">
+                <TextBlock Style="{StaticResource item-info-header}">有效作业率</TextBlock>
+            </Border>
+            <Border Style="{StaticResource item}" Grid.Row="5" Grid.Column="1">
+                <TextBlock Style="{StaticResource item-info-content}" Text="{Binding Equipmenteor}"></TextBlock>
+            </Border>
+            <Border Style="{StaticResource item-header}" Grid.Row="6">
+                <TextBlock Style="{StaticResource item-info-header}">烟支长度</TextBlock>
+            </Border>
+            <Border Style="{StaticResource item}" Grid.Row="6" Grid.Column="1">
+                <TextBlock Style="{StaticResource item-info-content}" Text="{Binding Length}"></TextBlock>
+            </Border>
+            <Border Style="{StaticResource item-header}" Grid.Row="7">
+                <TextBlock Style="{StaticResource item-info-header}">过嘴长度</TextBlock>
+            </Border>
+            <Border Style="{StaticResource item}" Grid.Row="7" Grid.Column="1">
+                <TextBlock Style="{StaticResource item-info-content}" Text="{Binding FilterLength1}"></TextBlock>
+            </Border>
+            <Border Style="{StaticResource item-header}" Grid.Row="8">
+                <TextBlock Style="{StaticResource item-info-header}">烟支直径</TextBlock>
+            </Border>
+            <Border Style="{StaticResource item}"  Grid.Row="8" Grid.Column="1">
+                <TextBlock Style="{StaticResource item-info-content}" Text="{Binding Diameter}"></TextBlock>
+            </Border>
+            <Border Style="{StaticResource item-header}" Grid.Row="9">
+                <TextBlock Style="{StaticResource item-info-header}">出厂日期</TextBlock>
+            </Border>
+            <Border Style="{StaticResource item}" Grid.Row="9" Grid.Column="1">
+                <TextBlock Style="{StaticResource item-info-content}" Text="{Binding OutDate,StringFormat=yyyy-MM-dd}"></TextBlock>
+            </Border>
+            <Border Style="{StaticResource item-header}" Grid.Row="10">
+                <TextBlock Style="{StaticResource item-info-header}">采购日期</TextBlock>
+            </Border>
+            <Border Style="{StaticResource item}" Grid.Row="10" Grid.Column="1">
+                <TextBlock Style="{StaticResource item-info-content}" Text="{Binding PurchaseDate,StringFormat=yyyy-MM-dd}"></TextBlock>
+            </Border>
+            <Border Style="{StaticResource item-header}" Grid.Row="11">
+                <TextBlock Style="{StaticResource item-info-header}">投产日期</TextBlock>
+            </Border>
+            <Border Style="{StaticResource item}" Grid.Row="11" Grid.Column="1">
+                <TextBlock Style="{StaticResource item-info-content}" Text="{Binding UsedDate,StringFormat=yyyy-MM-dd}"></TextBlock>
+            </Border>
+            <Border Style="{StaticResource item-header}" Grid.Row="12">
+                <TextBlock Style="{StaticResource item-info-header}">综合噪声</TextBlock>
+            </Border>
+            <Border Style="{StaticResource item}" Grid.Row="12" Grid.Column="1">
+                <TextBlock Style="{StaticResource item-info-content}" Text="{Binding SyntheticNoise}"></TextBlock>
+            </Border>
+            <Border Style="{StaticResource item-header}" Grid.Row="13">
+                <TextBlock Style="{StaticResource item-info-header}">单点噪声</TextBlock>
+            </Border>
+            <Border Style="{StaticResource item}" Grid.Row="13" Grid.Column="1">
+                <TextBlock Style="{StaticResource item-info-content}" Text="{Binding SingleNoise}"></TextBlock>
+            </Border>
+
+            <Border Style="{StaticResource item-header}" Grid.Row="12" Grid.Column="2">
+                <TextBlock Style="{StaticResource item-info-header}">额定生产速度</TextBlock>
+            </Border>
+            <Border Style="{StaticResource item}" Grid.Row="12" Grid.Column="3">
+                <TextBlock Style="{StaticResource item-info-content}" Text="{Binding RatedSpeed}"></TextBlock>
+            </Border>
+            <Border Style="{StaticResource item-header}" Grid.Row="13" Grid.Column="2">
+                <TextBlock Style="{StaticResource item-info-header}">额定烟条速度</TextBlock>
+            </Border>
+            <Border Style="{StaticResource item}" Grid.Row="13" Grid.Column="3">
+                <TextBlock Style="{StaticResource item-info-content}" Text="{Binding CigarRatedSpeed}"></TextBlock>
+            </Border>
+            <Border Style="{StaticResource item-header}" Grid.Row="12" Grid.Column="4">
+                <TextBlock Style="{StaticResource item-info-header}">最大生产速度</TextBlock>
+            </Border>
+            <Border Style="{StaticResource item}" Grid.Row="12" Grid.Column="5">
+                <TextBlock Style="{StaticResource item-info-content}" Text="{Binding MaxSpeed}"></TextBlock>
+            </Border>
+            <Border Style="{StaticResource item-header}" Grid.Row="13" Grid.Column="4">
+                <TextBlock Style="{StaticResource item-info-header}">最大烟条速度</TextBlock>
+            </Border>
+            <Border Style="{StaticResource item}" Grid.Row="13" Grid.Column="5">
+                <TextBlock Style="{StaticResource item-info-content}" Text="{Binding CigarMaxSpeed}"></TextBlock>
+            </Border>
+            <Grid Grid.RowSpan="12" Grid.Column="2" Grid.ColumnSpan="4">
+                <Image Source="{Binding AppendFiles2dId_File.Path}" Margin="20 0 0 0"></Image>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="1" VerticalAlignment="Bottom" Hyperlink.Click="Navigate2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Style="{StaticResource menu-item}">
+                    <Hyperlink Tag="{x:Type v:StructureUC}">
+                        <StackPanel>
+                            <Image Source="/Images/Main/menu-icon-1.png"></Image>
+                            <TextBlock Style="{StaticResource menu-header}">设备结构</TextBlock>
+                        </StackPanel>
+                    </Hyperlink>
+            </TextBlock>
+            <TextBlock Grid.Column="1" Style="{StaticResource menu-item}">
+                    <Hyperlink Tag="{x:Type v:DocumentUC}">
+                        <StackPanel>
+                            <Image Source="/Images/Main/menu-icon-2.png"></Image>
+                            <TextBlock Style="{StaticResource menu-header}">随机文档</TextBlock>
+                        </StackPanel>
+                    </Hyperlink>
+            </TextBlock>
+            <TextBlock Grid.Column="2" Style="{StaticResource menu-item}">
+                    <Hyperlink Tag="{x:Type v:VideoUC}">
+                        <StackPanel>
+                            <Image Source="/Images/Main/menu-icon-3.png"></Image>
+                            <TextBlock Style="{StaticResource menu-header}">培训资料</TextBlock>
+                        </StackPanel>
+                    </Hyperlink>
+            </TextBlock>
+            <TextBlock Grid.Column="3" Style="{StaticResource menu-item}">
+                    <Hyperlink Tag="{x:Type v:StrategyUC}">
+                        <StackPanel>
+                            <Image Source="/Images/Main/menu-icon-4.png"></Image>
+                            <TextBlock Style="{StaticResource menu-header}">维护策略</TextBlock>
+                        </StackPanel>
+                    </Hyperlink>
+            </TextBlock>
+            <TextBlock Grid.Column="4" Style="{StaticResource menu-item}">
+                    <Hyperlink Tag="{x:Type v:ExperienceBaseUC}">
+                        <StackPanel>
+                            <Image Source="/Images/Main/menu-icon-5.png"></Image>
+                            <TextBlock Style="{StaticResource menu-header}">专家经验库</TextBlock>
+                        </StackPanel>
+                    </Hyperlink>
+            </TextBlock>
+            <TextBlock Grid.Column="5" Style="{StaticResource menu-item}">
+                    <Hyperlink Tag="{x:Type v:TestUC}">
+                        <StackPanel>
+                            <Image Source="/Images/Main/menu-icon-6.png"></Image>
+                            <TextBlock Style="{StaticResource menu-header}">运维档案</TextBlock>
+                        </StackPanel>
+                    </Hyperlink>
+            </TextBlock>
+            <TextBlock Grid.Column="6" Style="{StaticResource menu-item}">
+                    <Hyperlink Tag="{x:Type v:SpareUC}">
+                        <StackPanel>
+                            <Image Source="/Images/Main/menu-icon-7.png"></Image>
+                            <TextBlock Style="{StaticResource menu-header}">备件清单</TextBlock>
+                        </StackPanel>
+                    </Hyperlink>
+            </TextBlock>
+        </Grid>
+    </Grid>
+</UserControl>

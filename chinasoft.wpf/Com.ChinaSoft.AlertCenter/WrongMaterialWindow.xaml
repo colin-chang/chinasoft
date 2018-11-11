@@ -1,0 +1,172 @@
+﻿<Window x:Class="Com.ChinaSoft.AlertCenter.WrongMaterialWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:roundCorner="clr-namespace:Com.ChinaSoft.UserControls.RoundCorner;assembly=Com.ChinaSoft.UserControls"
+        mc:Ignorable="d" WindowStyle="None" Background="Transparent" AllowsTransparency="True" WindowStartupLocation="CenterOwner"
+        Title="错料预警详细信息" Height="523" Width="896">
+
+    <Window.Resources>
+        <ResourceDictionary Source="Resources/Style/WrongMaterial.xaml"></ResourceDictionary>
+    </Window.Resources>
+
+    <roundCorner:RoundCornerPanel Title="错料预警详细信息" Padding="0">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TabControl Grid.Column="0">
+                <TabItem Header="辅料分布图">
+                    <Border Background="White" Padding="10" Margin="-3,-4,0,0">
+                        <Image Source="Images/Test.jpg"></Image>
+                    </Border>
+                </TabItem>
+                <TabItem Header="配方信息">
+                    <Border Padding="10" Background="#FFFFFF" Margin="-4">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"></RowDefinition>
+                                <RowDefinition Height="5*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                                <ColumnDefinition Width="2*"></ColumnDefinition>
+                                <ColumnDefinition Width="2*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Style="{StaticResource TxtRecipeTitle}" Text="牌号：芙蓉王（硬）" Grid.ColumnSpan="3"></TextBlock>
+
+                            <StackPanel Style="{StaticResource PanelColumnLabel}" Grid.Row="1" Grid.Column="0">
+                                <TextBlock Style="{StaticResource TxtRecipeLabel}" Text="烟丝" Grid.Row="1" Grid.Column="0"></TextBlock>
+                                <Separator Style="{StaticResource RecipeRowSeparator}"></Separator>
+                                <TextBlock Style="{StaticResource TxtRecipeLabel}" Text="嘴棒" Grid.Row="2" Grid.Column="0"></TextBlock>
+                                <Separator Style="{StaticResource RecipeRowSeparator}"></Separator>
+                                <TextBlock Style="{StaticResource TxtRecipeLabel}" Text="盘纸" Grid.Row="3" Grid.Column="0"></TextBlock>
+                                <Separator Style="{StaticResource RecipeRowSeparator}"></Separator>
+                                <TextBlock Style="{StaticResource TxtRecipeLabel}" Text="水松纸" Grid.Row="4" Grid.Column="0"></TextBlock>
+                                <Separator Style="{StaticResource RecipeRowSeparator}"></Separator>
+                                <TextBlock Style="{StaticResource TxtRecipeLabel}" Text="胶水" Grid.Row="5" Grid.Column="0"></TextBlock>
+                            </StackPanel>
+
+                            <StackPanel Style="{StaticResource PanelColumnContent}" Grid.Row="1" Grid.Column="1">
+                                <TextBlock Style="{StaticResource TxtRecipeContent}" Text="配方烟丝" Grid.Row="1" Grid.Column="1"></TextBlock>
+                                <Separator Style="{StaticResource RecipeRowSeparator}"></Separator>
+                                <TextBlock Style="{StaticResource TxtRecipeContent}" Text="配方嘴棒" Grid.Row="2" Grid.Column="1"></TextBlock>
+                                <Separator Style="{StaticResource RecipeRowSeparator}"></Separator>
+                                <TextBlock Style="{StaticResource TxtRecipeContent}" Text="配方盘纸" Grid.Row="3" Grid.Column="1"></TextBlock>
+                                <Separator Style="{StaticResource RecipeRowSeparator}"></Separator>
+                                <TextBlock Style="{StaticResource TxtRecipeContent}" Text="配方水松纸" Grid.Row="4" Grid.Column="1"></TextBlock>
+                                <Separator Style="{StaticResource RecipeRowSeparator}"></Separator>
+                                <TextBlock Style="{StaticResource TxtRecipeContent}" Text="配方胶水" Grid.Row="5" Grid.Column="1"></TextBlock>
+                            </StackPanel>
+
+                            <StackPanel Style="{StaticResource PanelColumnContent}" Grid.Row="1" Grid.Column="2">
+                                <TextBlock Style="{StaticResource TxtRecipeContent}" Text="实用烟丝" Grid.Row="1" Grid.Column="2"></TextBlock>
+                                <Separator Style="{StaticResource RecipeRowSeparator}"></Separator>
+                                <TextBlock Style="{StaticResource TxtRecipeContent}" Text="实用嘴棒" Grid.Row="2" Grid.Column="2"></TextBlock>
+                                <Separator Style="{StaticResource RecipeRowSeparator}"></Separator>
+                                <TextBlock Style="{StaticResource TxtRecipeContent}" Text="实用盘纸" Grid.Row="3" Grid.Column="2"></TextBlock>
+                                <Separator Style="{StaticResource RecipeRowSeparator}"></Separator>
+                                <TextBlock Style="{StaticResource TxtRecipeContent}" Text="实用水松纸" Grid.Row="4" Grid.Column="2"></TextBlock>
+                                <Separator Style="{StaticResource RecipeRowSeparator}"></Separator>
+                                <TextBlock Style="{StaticResource TxtRecipeContent}" Text="实用胶水" Grid.Row="5" Grid.Column="2"></TextBlock>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </TabItem>
+            </TabControl>
+            <Grid Grid.Column="1" Background="#FFFFFF" Style="{StaticResource GridGroupBoxContainer}">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="2*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <GroupBox Header="工单信息" Grid.Row="0" Style="{StaticResource GroupBoxStyle}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Style="{StaticResource Txt-Label}" Text="工单" Grid.Row="0" Grid.Column="0"></TextBlock>
+                        <TextBlock Style="{StaticResource Txt-Highlight}" Text="1234567890123456" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3"></TextBlock>
+
+                        <TextBlock Style="{StaticResource Txt-Label}" Text="班次" Grid.Row="1" Grid.Column="0"></TextBlock>
+                        <TextBlock Style="{StaticResource Txt-Highlight}" Text="中班" Grid.Row="1" Grid.Column="1"></TextBlock>
+
+                        <TextBlock Style="{StaticResource Txt-Label}" Text="班组" Grid.Row="1" Grid.Column="2"></TextBlock>
+                        <TextBlock Style="{StaticResource Txt-Highlight}" Text="乙班" Grid.Row="1" Grid.Column="3"></TextBlock>
+
+                        <TextBlock Style="{StaticResource Txt-Label}" Text="牌号" Grid.Row="2" Grid.Column="0"></TextBlock>
+                        <TextBlock Style="{StaticResource Txt-Highlight}" Text="芙蓉王（硬）" Grid.Row="2" Grid.Column="1"></TextBlock>
+
+                        <TextBlock Style="{StaticResource Txt-Label}" Text="产量" Grid.Row="2" Grid.Column="2"></TextBlock>
+                        <TextBlock Style="{StaticResource Txt-Highlight}" Text="185 万支" Grid.Row="2" Grid.Column="3"></TextBlock>
+                    </Grid>
+                </GroupBox>
+                <GroupBox Header="错料信息" Grid.Row="1" Style="{StaticResource GroupBoxStyle}">
+                    <ScrollViewer Style="{StaticResource FavsScrollViewer}">
+                        <WrapPanel>
+                            <Border Style="{StaticResource BorderWrongMaterialItem}">
+                                <StackPanel Style="{StaticResource PanelWrongMaterial}">
+                                    <TextBlock Style="{StaticResource TxtTopRow}" Text="盘纸"></TextBlock>
+                                    <TextBlock Style="{StaticResource TxtRow}" Text="配方盘纸"></TextBlock>
+                                    <Separator Style="{StaticResource TxtRowSeparator}"></Separator>
+                                    <TextBlock Style="{StaticResource TxtRow}" Text="实用盘纸"></TextBlock>
+                                </StackPanel>
+                            </Border>
+                            <Border Style="{StaticResource BorderWrongMaterialItem}">
+                                <StackPanel Style="{StaticResource PanelWrongMaterial}">
+                                    <TextBlock Style="{StaticResource TxtTopRow}" Text="嘴棒"></TextBlock>
+                                    <TextBlock Style="{StaticResource TxtRow}" Text="配方嘴棒"></TextBlock>
+                                    <Separator Style="{StaticResource TxtRowSeparator}"></Separator>
+                                    <TextBlock Style="{StaticResource TxtRow}" Text="实用嘴棒"></TextBlock>
+                                </StackPanel>
+                            </Border>
+                            <Border Style="{StaticResource BorderWrongMaterialItem}">
+                                <StackPanel Style="{StaticResource PanelWrongMaterial}">
+                                    <TextBlock Style="{StaticResource TxtTopRow}" Text="嘴棒"></TextBlock>
+                                    <TextBlock Style="{StaticResource TxtRow}" Text="配方嘴棒"></TextBlock>
+                                    <Separator Style="{StaticResource TxtRowSeparator}"></Separator>
+                                    <TextBlock Style="{StaticResource TxtRow}" Text="实用嘴棒"></TextBlock>
+                                </StackPanel>
+                            </Border>
+                            <Border Style="{StaticResource BorderWrongMaterialItem}">
+                                <StackPanel Style="{StaticResource PanelWrongMaterial}">
+                                    <TextBlock Style="{StaticResource TxtTopRow}" Text="嘴棒"></TextBlock>
+                                    <TextBlock Style="{StaticResource TxtRow}" Text="配方嘴棒"></TextBlock>
+                                    <Separator Style="{StaticResource TxtRowSeparator}"></Separator>
+                                    <TextBlock Style="{StaticResource TxtRow}" Text="实用嘴棒"></TextBlock>
+                                </StackPanel>
+                            </Border>
+                            <Border Style="{StaticResource BorderWrongMaterialItem}">
+                                <StackPanel Style="{StaticResource PanelWrongMaterial}">
+                                    <TextBlock Style="{StaticResource TxtTopRow}" Text="嘴棒"></TextBlock>
+                                    <TextBlock Style="{StaticResource TxtRow}" Text="配方嘴棒"></TextBlock>
+                                    <Separator Style="{StaticResource TxtRowSeparator}"></Separator>
+                                    <TextBlock Style="{StaticResource TxtRow}" Text="实用嘴棒"></TextBlock>
+                                </StackPanel>
+                            </Border>
+                            <Border Style="{StaticResource BorderWrongMaterialItem}">
+                                <StackPanel Style="{StaticResource PanelWrongMaterial}">
+                                    <TextBlock Style="{StaticResource TxtTopRow}" Text="嘴棒"></TextBlock>
+                                    <TextBlock Style="{StaticResource TxtRow}" Text="配方嘴棒"></TextBlock>
+                                    <Separator Style="{StaticResource TxtRowSeparator}"></Separator>
+                                    <TextBlock Style="{StaticResource TxtRow}" Text="实用嘴棒"></TextBlock>
+                                </StackPanel>
+                            </Border>
+                        </WrapPanel>
+                    </ScrollViewer>
+                </GroupBox>
+            </Grid>
+        </Grid>
+    </roundCorner:RoundCornerPanel>
+</Window>

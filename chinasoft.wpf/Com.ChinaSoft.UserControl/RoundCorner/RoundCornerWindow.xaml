@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="Com.ChinaSoft.UserControls.RoundCorner.RoundCornerWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d" 
+             Name="CornerWindow"
+             d:DesignHeight="300" d:DesignWidth="400">
+    <UserControl.Resources>
+        <ResourceDictionary Source="RoundCornerDict.xaml"></ResourceDictionary>
+    </UserControl.Resources>
+
+    <DockPanel>
+        <Border DockPanel.Dock="Top" Style="{StaticResource HeadContainer}" Panel.ZIndex="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="故障预警详细信息" Style="{StaticResource HeadTitle}" />
+                </StackPanel>
+                <Button Grid.Column="1" Style="{StaticResource HeadClose}" Click="CloseWindow_OnClick" />
+            </Grid>
+        </Border>
+        <Border Style="{StaticResource ContentContainer}">
+            <ContentPresenter  Content="{Binding InnerContent,ElementName= CornerWindow}"></ContentPresenter>
+        </Border>
+    </DockPanel>
+</UserControl>
+

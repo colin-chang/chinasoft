@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="Com.ChinaSoft.Devinfo.Views.PartUc.PartExplodeUc"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:userControls="clr-namespace:Com.ChinaSoft.UserControls;assembly=Com.ChinaSoft.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Style/Structure/StructureDict.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="/Resources/DataTemplate/Structure/Structure.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <!--爆炸图-->
+    <!--<StackPanel Style="{StaticResource panel-explode}">-->
+    <StackPanel>
+        <userControls:BindingWebBrowser Style="{StaticResource wb-explode}" Source="{Binding Explode}"></userControls:BindingWebBrowser>
+        <DataGrid ItemsSource="{Binding Components}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="零部件名称" Binding="{Binding BusName}" Width="*"/>
+                <DataGridTextColumn Header="物品编号" Binding="{Binding BusCode}" Width="*"/>
+                <DataGridTextColumn Header="单位" Binding="{Binding Unit}" Width="*"/>
+                <DataGridTextColumn Header="数量" Binding="{Binding Num}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </StackPanel>
+</UserControl>

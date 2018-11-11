@@ -1,0 +1,39 @@
+﻿<Window x:Class="Com.ChinaSoft.UserControls.ConfirmBox.ConfirmWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen"
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent"
+        Title="ConfirmWindow" Height="190" Width="250">
+    <Window.Resources>
+        <ResourceDictionary Source="/Com.ChinaSoft.UserControls;Component/ConfirmBox/ConfirmBoxDict.xaml"/>
+    </Window.Resources>
+
+    <DockPanel>
+        <Border DockPanel.Dock="Top" Style="{StaticResource HeadContainer}" Panel.ZIndex="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal">
+                    <Image Name="ConfirmBoxImage" Style="{StaticResource ConfirmBoxImage.Question}"></Image>
+                    <TextBlock Name="TbTitle" Style="{StaticResource HeadTitle}" Text="测试标题"></TextBlock>
+                </StackPanel>
+                <Button Grid.Column="1" Style="{StaticResource HeadClose}" Click="CloseWindow_TouchDown" TouchDown="CloseWindow_TouchDown"/>
+            </Grid>
+        </Border>
+        <Border Style="{StaticResource ContentContainer}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <TextBlock Name="TbContent" Style="{StaticResource MessageContent}" Text="测试内容"></TextBlock>
+                <StackPanel Name="ButtonContainer" Style="{StaticResource Panel-ButtonContainer}" Grid.Row="1">
+                </StackPanel>
+            </Grid>
+        </Border>
+    </DockPanel>
+</Window>

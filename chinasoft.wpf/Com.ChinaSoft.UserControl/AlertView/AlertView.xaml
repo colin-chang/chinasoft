@@ -1,0 +1,27 @@
+﻿<Window x:Class="Com.ChinaSoft.UserControls.AlertView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Width="285"
+        WindowStartupLocation="CenterOwner" WindowStyle="None" AllowsTransparency="True" Background="Transparent">
+    <Window.Resources>
+        <Style TargetType="ListBox">
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Hidden"></Setter>
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Hidden"></Setter>
+        </Style>
+    </Window.Resources>
+
+    <Border Padding="0">
+        <ListBox ItemsSource="{Binding Items}" Background="#FFF" Name="box" Padding="0" HorizontalAlignment="Center" Opacity="0.95" SelectionChanged="box_SelectionChanged">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border HorizontalAlignment="Center" BorderBrush="#ccc" BorderThickness="0 0 0 1" Height="65" Width="270" Padding="20 0">
+                        <TextBlock Text="{Binding Text}" FontSize="18" FontWeight="Light" TextAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Border>
+</Window>

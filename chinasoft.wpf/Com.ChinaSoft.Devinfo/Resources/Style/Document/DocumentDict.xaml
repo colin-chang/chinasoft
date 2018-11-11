@@ -1,0 +1,33 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:uc="clr-namespace:Com.ChinaSoft.Devinfo.UserControls"
+                    xmlns:cvt="clr-namespace:Com.ChinaSoft.Devinfo.Expands.Converter">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Com.ChinaSoft.Resource;Component/Style/CommonDict.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/Com.ChinaSoft.Resource;Component/Style/CustomScrollViewerDict.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <cvt:DocumentTypeVisibilityConverter x:Key="dyvc"></cvt:DocumentTypeVisibilityConverter>
+    <cvt:MoonPdfPanelOpacityConverter x:Key="mppoc"></cvt:MoonPdfPanelOpacityConverter>
+    <Style TargetType="ScrollViewer" x:Key="fileList" BasedOn="{StaticResource FavsScrollViewer}">
+        <Setter Property="Grid.Row" Value="1"></Setter>
+        <Setter Property="Margin" Value="0 20 0 0"></Setter>
+        <!--<Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Hidden"></Setter>-->
+        <Setter Property="Visibility" Value="{Binding DocumentType,Converter={StaticResource dyvc},ConverterParameter=FileList}"></Setter>
+    </Style>
+    <Style TargetType="DocumentViewer" x:Key="word">
+        <Setter Property="Visibility" Value="{Binding DocumentType,Converter={StaticResource dyvc},ConverterParameter=Word}"></Setter>
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"></Setter>
+        <Setter Property="ScrollViewer.PanningMode" Value="Both"></Setter>
+    </Style>
+    <Style TargetType="uc:PdfViewer" x:Key="pdf">
+        <Setter Property="Opacity" Value="{Binding DocumentType,Converter={StaticResource mppoc}}"></Setter>
+    </Style>
+    <Style TargetType="uc:ImageViewer" x:Key="photo">
+        <Setter Property="Visibility" Value="{Binding DocumentType,Converter={StaticResource dyvc},ConverterParameter=Photo}"></Setter>
+    </Style>
+    <Style TargetType="WebBrowser" x:Key="html">
+        <Setter Property="Visibility" Value="{Binding DocumentType,Converter={StaticResource dyvc},ConverterParameter=Html}"></Setter>
+    </Style>
+</ResourceDictionary>

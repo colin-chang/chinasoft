@@ -1,0 +1,8 @@
+﻿<ab:AppBase
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ab="clr-namespace:Com.ChinaSoft.Model.WpfSys;assembly=Com.ChinaSoft.Model" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" x:Class="Com.ChinaSoft.Devinfo.App"
+    >
+    <ab:AppBase.Resources>
+        <ResourceDictionary Source="/Com.ChinaSoft.Resource;Component/Style/DropdownList.xaml"></ResourceDictionary>
+    </ab:AppBase.Resources>
+</ab:AppBase>

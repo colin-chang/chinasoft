@@ -1,0 +1,22 @@
+<ion-view id="warningFault" view-title="警告预警" cache-view="false">
+    <header class="bar bar-subheader">
+        <div class="button-bar">
+            <a class="button button-clear button-positive button-active">故障列表</a>
+            <a class="button button-clear button-dark" href="#/warning/lifetime">寿命预警</a>
+        </div>
+    </header>
+    <ion-content class="has-header has-subheader">
+        <ion-list>
+            <ion-item ng-repeat="item in faults" ng-click="viewImage(item.strategyId)" class="item-avatar item-icon-right">
+                <img ng-src="../../img/warning/fault.png">
+                <h2>{{item.content}}</h2>
+                <p>预警时间：{{item.alertTimeStr}}</p>
+                <i class="icon ion-ios-photos-outline"></i>
+                <ion-option-button class="button-positive" ng-click="viewKnowledge(item.id,item.strategyId)">专家经验</ion-option-button>
+                <ion-option-button class="button-assertive" ng-click="repair(item.id,item.strategyId)">保修呼叫</ion-option-button>
+            </ion-item>
+        </ion-list>
+        <ion-infinite-scroll ng-if="canLoadMore" on-infinite="loadMore()">
+        </ion-infinite-scroll>
+    </ion-content>
+</ion-view>

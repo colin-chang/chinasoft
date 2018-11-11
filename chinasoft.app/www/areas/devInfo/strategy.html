@@ -1,0 +1,70 @@
+<ion-view id="devInfoStrategy" cache-view="false">
+    <ion-header-bar class="bar-calm">
+        <button class="button button-calm button-icon icon ion-ios-arrow-back" ui-sref="indexTab.devInfo"></button>
+        <h1 class="title">维护策略</h1>
+    </ion-header-bar>
+    <header class="bar bar-subheader">
+        <h2 class="title crumb">
+            <span ng-click="selectCrumb('',-1,false)">{{equipmentName}}</span>
+            <small ng-repeat="crumb in crumbs" ng-click="selectCrumb(crumb.id,$index,$last)">/{{crumb.bomName}}</small>
+        </h2>
+    </header>
+    <ion-content class="has-header has-subheader stable-bg">
+        <table>
+            <tr class="light-bg calm">
+                <th>部位</th>
+                <th>点检</th>
+                <th>润滑</th>
+                <th>保养</th>
+                <th>维修</th>
+                <th>项修</th>
+                <th>大修</th>
+            </tr>
+            <tr ng-repeat="map in maps">
+                <td class="text-center" ng-class="{'light-bg':$odd}" ng-click="selectBom(map)">{{map.bomName}}</td>
+                <td ng-class="{'has-strategy':map.checkCount>0}">
+                    <span ng-if="map.checkCount>0"
+                          ui-sref="devInfo.strategyDetail({type:'check',queryCode:map.queryCode})">
+                        <i class="iconfont icon-gonggongxinxishezhi"></i>
+                        {{map.checkCount}}
+                    </span>
+                </td>
+                <td ng-class="{'has-strategy':map.lubricationCount>0}">
+                    <span ng-if="map.lubricationCount>0"
+                          ui-sref="devInfo.strategyDetail({type:'lubrication',queryCode:map.queryCode})">
+                        <i class="iconfont icon-gonggongxinxishezhi"></i>
+                        {{map.lubricationCount}}
+                    </span>
+                </td>
+                <td ng-class="{'has-strategy':map.maintainCount>0}">
+                    <span ng-if="map.maintainCount>0"
+                          ui-sref="devInfo.strategyDetail({type:'maintain',queryCode:map.queryCode})">
+                        <i class="iconfont icon-gonggongxinxishezhi"></i>
+                        {{map.maintainCount}}
+                    </span>
+                </td>
+                <td ng-class="{'has-strategy':map.repairCount>0}">
+                    <span ng-if="map.repairCount>0"
+                          ui-sref="devInfo.strategyDetail({type:'repair',queryCode:map.queryCode})">
+                        <i class="iconfont icon-gonggongxinxishezhi"></i>
+                        {{map.repairCount}}
+                    </span>
+                </td>
+                <td ng-class="{'has-strategy':map.proImprCount>0}">
+                    <span ng-if="map.proImprCount>0"
+                          ui-sref="devInfo.strategyDetail({type:'proImpr',queryCode:map.queryCode})">
+                        <i class="iconfont icon-gonggongxinxishezhi"></i>
+                        {{map.proImprCount}}
+                    </span>
+                </td>
+                <td ng-class="{'has-strategy':map.bigImprCount>0}">
+                    <span ng-if="map.bigImprCount>0"
+                          ui-sref="devInfo.strategyDetail({type:'bigImpr',queryCode:map.queryCode})">
+                        <i class="iconfont icon-gonggongxinxishezhi"></i>
+                        {{map.bigImprCount}}
+                    </span>
+                </td>
+            </tr>
+        </table>
+    </ion-content>
+</ion-view>

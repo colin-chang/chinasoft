@@ -1,0 +1,63 @@
+﻿<Window x:Class="Com.ChinaSoft.Devinfo.Views.SpareModelWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:uc="clr-namespace:Com.ChinaSoft.Devinfo.UserControls"
+        xmlns:b="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:userControls="clr-namespace:Com.ChinaSoft.UserControls;assembly=Com.ChinaSoft.UserControls"
+        mc:Ignorable="d"
+        Height="450" Width="650" WindowStartupLocation="CenterOwner" WindowStyle="None" ResizeMode="NoResize"
+        AllowsTransparency="True"
+        Background="Transparent">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Style/Common/DialogWindowDict.xaml" />
+                <ResourceDictionary Source="/Resources/ControlTemplate/Spare/TabControlTemplate.xaml" />
+                <ResourceDictionary
+                    Source="/Com.ChinaSoft.Resource;Component/ControlTemplate/LazyLoadingDataGridControlTemplate.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Border Style="{StaticResource container}">
+        <DockPanel>
+            <Grid Style="{StaticResource grid-title}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <TextBlock Style="{StaticResource text-title}">备件详细信息</TextBlock>
+                <Button Style="{StaticResource button-close}" Command="{Binding CloseCommand}">
+                    <b:EventTrigger EventName="TouchDown">
+                        <b:InvokeCommandAction Command="{Binding CloseCommand}" />
+                    </b:EventTrigger>
+                </Button>
+            </Grid>
+            <Grid DockPanel.Dock="Bottom">
+                <Border Style="{StaticResource border-body}">
+                    <TabControl SelectionChanged="TabControl_SelectionChanged">
+                        <TabItem Header="3D">
+                            <!--<Border Margin="0 10 0 0" Name="placeholder"/>-->
+                            <Grid Name="Grid3D">
+                                <Popup Name="PopupBrowser"
+                                       IsOpen="True"
+                                       Placement="Center"
+                                       Opacity="0.1"
+                                       Width="{Binding ActualWidth, ElementName=Grid3D, Mode=OneWay}"
+                                       Height="{Binding ActualHeight, ElementName=Grid3D, Mode=OneWay}"
+                                       Margin="3">
+                                    <userControls:BindingWebBrowser Name="Browser3D" Source="{Binding Append3d}" />
+                                </Popup>
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="2D">
+                            <uc:ImageViewer Source="{Binding Append2d}" Margin="0 10 0 0" />
+                        </TabItem>
+                    </TabControl>
+                </Border>
+            </Grid>
+        </DockPanel>
+    </Border>
+</Window>

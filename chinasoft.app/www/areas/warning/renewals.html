@@ -1,0 +1,29 @@
+<ion-view id="warningRepair" cache-view="false">
+    <ion-header-bar class="bar-calm">
+        <button class="button button-calm button-icon icon ion-ios-arrow-back" ui-sref="warning.lifetime"></button>
+        <h1 class="title">备件换件</h1>
+    </ion-header-bar>
+    <ion-content class="has-header padding-top">
+        <ion-list>
+            <ion-item class="item-divider">预警零件</ion-item>
+            <ion-item>零件名称<span class="item-note">{{element.elementName}}</span></ion-item>
+            <ion-item>规格型号<span class="item-note">{{element.elementModel}}</span></ion-item>
+            <ion-item>材质<span class="item-note">{{element.nature}}</span></ion-item>
+            <ion-item>生产厂商<span class="item-note">{{element.supplier}}</span></ion-item>
+            <ion-item class="item-divider">替换备件</ion-item>
+            <ion-item class="item-input item-select">
+                <div class="input-label">
+                    换件数量
+                </div>
+                <select ng-model="changeInfo.changeNum" ng-options="opt for opt in changeNums">
+                </select>
+            </ion-item>
+            <ion-item>换件时间<span class="item-note">{{changeInfo.inputTime|date:'yyyy-MM-dd'}}</span></ion-item>
+            <ion-item>下次换件时间<span class="item-note">{{element.changeDate|date:'yyyy-MM-dd'}}</span></ion-item>
+            <ion-item>换件人<span class="item-note">{{changeInfo.inputUser}}</span></ion-item>
+        </ion-list>
+        <div class="padding">
+            <button class="button button-block button-positive" ng-click="submit()">提交</button>
+        </div>
+    </ion-content>
+</ion-view>

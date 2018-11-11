@@ -1,0 +1,60 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:cvt="clr-namespace:Com.ChinaSoft.Devinfo.Expands.Converter">
+
+    <cvt:SparePercentReverseConverter x:Key="sprc"></cvt:SparePercentReverseConverter>
+    <Style TargetType="Grid" x:Key="grid-percent">
+        <Setter Property="Width" Value="200"></Setter>
+        <Setter Property="Height" Value="20"></Setter>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="text-percent">
+        <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="Foreground" Value="#434a54"></Setter>
+        <Setter Property="Margin" Value="0 0 8 0"></Setter>
+    </Style>
+    <DataTemplate x:Key="PercentColumn">
+        <DataTemplate.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="/Com.ChinaSoft.Resource;Component/Style/ProgressBarStyle.xaml" />
+                </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary>
+        </DataTemplate.Resources>
+        <Grid Style="{StaticResource grid-percent}">
+            <ProgressBar Name="ProgressBar" Minimum="0" Maximum="1" Background="#ffce54" Foreground="#fc6e51" Style="{StaticResource MaterialDesignLinearProgressBar}" Value="{Binding LifeRate}"/>
+            <TextBlock Style="{StaticResource text-percent}" Text="{Binding Value,ElementName=ProgressBar,StringFormat=P0}"></TextBlock>
+        </Grid>
+    </DataTemplate>
+
+    <Style TargetType="Hyperlink" x:Key="lk-cpc">
+        <Setter Property="TextDecorations" Value="None"></Setter>
+        <Setter Property="Foreground" Value="#fff"></Setter>
+        <Setter Property="FontSize" Value="14"></Setter>
+    </Style>
+    <DataTemplate x:Key="ChangePartColumn">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Margin="5,0">
+                <Hyperlink Style="{StaticResource lk-cpc}"
+                    Command="{Binding DataContext.ChangePartCommand, 
+                              RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type DataGrid},AncestorLevel=1}}"
+                              CommandParameter="{Binding Id}">
+                    <Image Source="/Images/Spare/changeinfo.png" Height="20"></Image>
+                    换件
+                </Hyperlink>
+            </TextBlock>
+        </StackPanel>
+    </DataTemplate>
+    <DataTemplate x:Key="LinkColumn">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Margin="5,0">
+                <Hyperlink Style="{StaticResource lk-cpc}"
+                    Command="{Binding DataContext.ShowModelCommand, 
+                              RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type DataGrid},AncestorLevel=1}}"
+                              CommandParameter="{Binding Id}">
+                    <Run Text="{Binding ElementName}"></Run>
+                </Hyperlink>
+            </TextBlock>
+        </StackPanel>
+    </DataTemplate>
+</ResourceDictionary>

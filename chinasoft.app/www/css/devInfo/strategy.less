@@ -1,0 +1,52 @@
+@import "crumb";
+
+#devInfoStrategy {
+  .crumb {
+    .crumb;
+  }
+  @border-color: #e2e2e2;
+  .has-strategy {
+    background-color: #B2DA7C;
+    color: #fff;
+    text-align: center;
+  }
+  table {
+    width: 100%;
+    line-height: 35px;
+    border-bottom: 1px solid @border-color;
+    tr {
+      padding: 5px 0;
+      &:first-child {
+        border-bottom: 5px solid #27C2F1;
+        box-shadow: 0 4px 5px #27C2F1;
+      }
+    }
+    th, td {
+      border-right: 1px solid @border-color;
+    }
+    th {
+      padding-top: 3px;
+      &:last-of-type {
+        border-right-width: 0;
+      }
+    }
+    td {
+      border-top: 1px solid @border-color;
+      span {
+        display: inline-block;
+        width: 100%;
+      }
+      &:first-of-type {
+        color: #666;
+      }
+      &:last-of-type {
+        border-right-width: 0;
+      }
+    }
+
+    .iconfont {
+      display: inline-block;
+      margin-right: 5px;
+    }
+  }
+}

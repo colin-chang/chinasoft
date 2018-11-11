@@ -1,0 +1,53 @@
+<ion-view id="devInfoSpare" cache-view="false">
+    <ion-header-bar class="bar-calm item-input-inset">
+        <button class="button button-calm button-icon icon ion-ios-arrow-back" ui-sref="indexTab.devInfo"></button>
+        <label class="item-input-wrapper">
+            <i class="icon ion-ios-search placeholder-icon"></i>
+            <form ng-submit="search()">
+                <input type="search" ng-model="keyword" placeholder="输入关键字搜索">
+            </form>
+        </label>
+        <button class="button button-light button-clear">取消</button>
+    </ion-header-bar>
+    <ion-content class="has-header padding-top">
+        <ion-list>
+            <ion-item ng-repeat="item in list" ng-class="{'stable-bg':$even}">
+                <!--<div class="row" ui-sref="devInfo.spareModel({id:item.id})">-->
+                <div class="row" ng-click="viewModel(item.id)">
+                    <div class="col col-25 text-center">
+                        <h3>
+                            <span class="h3-sm">{{item.shortName}}</span>
+                            <small>备件名称</small>
+                        </h3>
+                    </div>
+                    <div class="col col-20 text-center">
+                        <h3>
+                            <span class="h3-sm">{{item.changeDate}}</span>
+                            <small>换件日期</small>
+                        </h3>
+                    </div>
+                    <div class="col col-25 text-center">
+                        <h3>
+                            <progress value="{{item.lifeRate}}"></progress>
+                            <small>寿命比例 : <span class="balanced">{{item.lifeRate|percentage:2}}</span></small>
+                        </h3>
+                    </div>
+                    <div class="col text-center">
+                        <h3>
+                            {{item.elementModel}}
+                            <small>规格型号</small>
+                        </h3>
+                    </div>
+                    <div class="col text-center">
+                        <h3 class="">
+                            <span class="assertive">{{item.usedLife}}</span>月
+                            <small>理论寿命</small>
+                        </h3>
+                    </div>
+                </div>
+            </ion-item>
+        </ion-list>
+        <ion-infinite-scroll ng-if="canLoadMore" on-infinite="loadMore()">
+        </ion-infinite-scroll>
+    </ion-content>
+</ion-view>

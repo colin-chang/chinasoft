@@ -1,0 +1,5 @@
+﻿<wb:WindowBase x:Class="Com.ChinaSoft.Devinfo.MainWindow"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:wb="clr-namespace:Com.ChinaSoft.Model.WpfSys;assembly=Com.ChinaSoft.Model">
+</wb:WindowBase>
+
