@@ -1,5 +1,3 @@
-#ChinaSoft.Devinfo
-
 本项目是中软为某烟厂开发智能控制协同作业系统。
 
 ## 1. chinasoft.wpf
