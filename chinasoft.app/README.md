@@ -1,8 +1,3 @@
-## SVN账号
-url:`https://115.28.209.159/svn/ccdtm/4. 代码管理/trunk/devinfo/devinfo-device`
-uid:`zhengcheng`
-pwd:`zhangcheng123456`
-
 ## 常用命令
 1.添加iOS/Android平台
 
